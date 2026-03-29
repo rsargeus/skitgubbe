@@ -580,6 +580,7 @@
   <a href="#snabbguide">Snabbguide</a>
   <a href="#strategi">Strategi</a>
   <a href="#faq">Regeltvister</a>
+  <a href="#fraga">Fråga AI</a>
 </nav>
 
 <div class="container">
@@ -855,6 +856,48 @@
     </div>
   </section>
 
+
+  <section id="fraga">
+    <div class="section-header">
+      <div class="section-icon">🤖</div>
+      <h2>Ställ en fråga</h2>
+    </div>
+    <div class="card">
+      <p style="margin-bottom:20px; opacity:0.8;">Osäker på en regel? Skriv din fråga så svarar en AI baserat på spelreglerna ovan.</p>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <input id="ai-question" type="text" placeholder="T.ex. Kan man lägga ett 2 på ett ess?" style="
+          flex:1; min-width:200px;
+          background: rgba(0,0,0,0.3);
+          border: 1px solid rgba(201,168,76,0.4);
+          border-radius: 4px;
+          padding: 12px 16px;
+          color: var(--cream);
+          font-family: 'Crimson Pro', Georgia, serif;
+          font-size: 1rem;
+          outline: none;
+        ">
+        <button id="ai-submit" onclick="askQuestion()" style="
+          background: var(--gold);
+          color: var(--felt-dark);
+          border: none;
+          border-radius: 4px;
+          padding: 12px 24px;
+          font-family: 'Playfair Display', serif;
+          font-weight: 700;
+          font-size: 0.9rem;
+          cursor: pointer;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          transition: background 0.2s;
+          white-space: nowrap;
+        ">Fråga</button>
+      </div>
+      <div id="ai-answer" style="display:none; margin-top:20px; padding:16px 20px; background:rgba(0,0,0,0.2); border-left:3px solid var(--gold); border-radius:0 4px 4px 0;">
+        <p id="ai-answer-text" style="line-height:1.7;"></p>
+      </div>
+    </div>
+  </section>
+
 </div>
 
 <footer>
@@ -868,6 +911,39 @@
 </footer>
 
 <script>
+  async function askQuestion() {
+    const input = document.getElementById('ai-question');
+    const answerBox = document.getElementById('ai-answer');
+    const answerText = document.getElementById('ai-answer-text');
+    const btn = document.getElementById('ai-submit');
+    const question = input.value.trim();
+    if (!question) return;
+
+    btn.textContent = '...';
+    btn.disabled = true;
+    answerBox.style.display = 'none';
+
+    try {
+      const res = await fetch('/ask', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question }),
+      });
+      const data = await res.json();
+      answerText.textContent = data.answer || data.error || 'Inget svar.';
+    } catch {
+      answerText.textContent = 'Kunde inte nå servern. Försök igen.';
+    }
+
+    answerBox.style.display = 'block';
+    btn.textContent = 'Fråga';
+    btn.disabled = false;
+  }
+
+  document.getElementById('ai-question').addEventListener('keydown', e => {
+    if (e.key === 'Enter') askQuestion();
+  });
+
   document.querySelectorAll('.faq-q').forEach(q => {
     q.addEventListener('click', () => {
       const item = q.parentElement;
