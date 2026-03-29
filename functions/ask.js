@@ -85,7 +85,7 @@ export async function onRequestPost(context) {
       headers: { 'Content-Type': 'application/json' },
     });
   } catch (err) {
-    return new Response(JSON.stringify({ error: 'Något gick fel. Försök igen.' }), {
+    return new Response(JSON.stringify({ error: err?.message ?? String(err) }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
     });
