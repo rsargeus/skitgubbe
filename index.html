@@ -202,35 +202,41 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
     gap: 6px;
     padding: 20px;
     background: rgba(0,0,0,0.2);
     border-radius: 10px;
-    justify-content: center;
     margin: 16px 0;
   }
 
   .rank-card {
-    background: var(--card-white);
-    color: var(--black);
-    width: 44px;
-    height: 60px;
+    background: linear-gradient(145deg, #fff8e8, #f5e8c0);
+    border: 2px solid var(--gold);
+    color: #8b6914;
+    width: 48px;
+    height: 66px;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 3px;
     font-family: 'Playfair Display', serif;
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     box-shadow: 0 4px 12px rgba(0,0,0,0.35);
     transition: transform 0.15s;
     cursor: default;
+    flex-shrink: 0;
   }
 
   .rank-card:hover { transform: translateY(-5px); }
-  .rank-card.special { background: #fff8e8; border: 2px solid var(--gold); }
-  .rank-card .card-suit { font-size: 0.6rem; opacity: 0.5; }
+  .rank-card.special {
+    box-shadow: 0 4px 14px rgba(212,168,83,0.35);
+  }
+  .rank-card .card-suit { font-size: 0.75rem; line-height: 1; }
+  .rank-card .card-suit.red { color: var(--red); }
 
   .rank-arrow {
     color: var(--gold);
@@ -660,19 +666,7 @@
 
     section { scroll-margin-top: 60px; margin-bottom: 44px; }
 
-    /* Rang-display: horisontell scroll */
-    .rank-display {
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      justify-content: flex-start;
-      scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
-      padding: 16px;
-      border-radius: 8px;
-    }
-    .rank-display::-webkit-scrollbar { display: none; }
-    .rank-card { flex-shrink: 0; width: 36px; height: 50px; font-size: 0.88rem; }
-    .rank-arrow { flex-shrink: 0; }
+    .rank-card { width: 38px; height: 52px; font-size: 0.85rem; }
 
     /* Specialkort: 1 kolumn */
     .special-cards { grid-template-columns: 1fr; }
@@ -796,31 +790,31 @@
       <div class="rank-display">
         <div class="rank-card"><span>3</span><span class="card-suit">♣</span></div>
         <span class="rank-arrow">→</span>
-        <div class="rank-card"><span>4</span></div>
+        <div class="rank-card"><span>4</span><span class="card-suit">♠</span></div>
         <span class="rank-arrow">→</span>
-        <div class="rank-card"><span>5</span></div>
+        <div class="rank-card"><span>5</span><span class="card-suit red">♥</span></div>
         <span class="rank-arrow">→</span>
-        <div class="rank-card"><span>6</span></div>
+        <div class="rank-card"><span>6</span><span class="card-suit red">♦</span></div>
         <span class="rank-arrow">→</span>
-        <div class="rank-card"><span>7</span></div>
+        <div class="rank-card"><span>7</span><span class="card-suit">♣</span></div>
         <span class="rank-arrow">→</span>
-        <div class="rank-card"><span>8</span></div>
+        <div class="rank-card"><span>8</span><span class="card-suit">♠</span></div>
         <span class="rank-arrow">→</span>
-        <div class="rank-card"><span>9</span></div>
+        <div class="rank-card"><span>9</span><span class="card-suit red">♥</span></div>
         <span class="rank-arrow">→</span>
-        <div class="rank-card"><span>J</span></div>
+        <div class="rank-card"><span>J</span><span class="card-suit red">♦</span></div>
         <span class="rank-arrow">→</span>
-        <div class="rank-card"><span>Q</span></div>
+        <div class="rank-card"><span>Q</span><span class="card-suit">♣</span></div>
         <span class="rank-arrow">→</span>
-        <div class="rank-card"><span>K</span></div>
+        <div class="rank-card"><span>K</span><span class="card-suit">♠</span></div>
         <span class="rank-arrow">→</span>
-        <div class="rank-card"><span>A</span></div>
+        <div class="rank-card"><span>A</span><span class="card-suit red">♥</span></div>
         <span class="rank-arrow">→</span>
-        <div class="rank-card special"><span>2</span></div>
+        <div class="rank-card special"><span>2</span><span class="card-suit">♠</span></div>
         <span class="rank-arrow">→</span>
-        <div class="rank-card special"><span>10</span></div>
+        <div class="rank-card special"><span>10</span><span class="card-suit red">♦</span></div>
       </div>
-      <p style="font-size:0.9rem; opacity:0.7; margin-top:10px;">⭐ <strong>10 är högst</strong>, <strong>2 är näst högst</strong>. Båda är specialkort.</p>
+      <p style="font-size:0.9rem; opacity:0.7; margin-top:10px;">⭐ <strong>10 och 2 är specialkort.</strong></p>
     </div>
     <div style="text-align:right; margin-top:14px;"><a href="#forberedelser" style="color:var(--gold); font-size:0.88rem; font-weight:500; text-decoration:none; opacity:0.7;">Förberedelser →</a></div>
   </section>
@@ -947,12 +941,18 @@
     <div class="card">
       <div class="special-cards">
         <div class="special-card-item">
-          <div class="special-card-badge">2</div>
+          <div style="background:linear-gradient(145deg,#fff8e8,#f5e8c0); border:2px solid var(--gold); width:72px; height:96px; border-radius:10px; box-shadow:0 6px 20px rgba(0,0,0,0.5); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; font-family:'Playfair Display',serif; font-weight:900; color:#8b6914; margin:0 auto 14px;">
+            <div style="font-size:2.2rem; line-height:1;">2</div>
+            <div style="font-size:1.2rem; line-height:1;">♠</div>
+          </div>
           <div class="special-card-title">Tvåan</div>
           <p>Kan spelas på <strong>vad som helst</strong>. Återställer högen – nästa spelare får lägga vad den vill.</p>
         </div>
         <div class="special-card-item">
-          <div class="special-card-badge gold-card">10</div>
+          <div style="background:linear-gradient(145deg,#fff8e8,#f5e8c0); border:2px solid var(--gold); width:72px; height:96px; border-radius:10px; box-shadow:0 6px 20px rgba(0,0,0,0.5); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; font-family:'Playfair Display',serif; font-weight:900; color:#8b6914; margin:0 auto 14px;">
+            <div style="font-size:1.9rem; line-height:1;">10</div>
+            <div style="font-size:1.2rem; line-height:1; color:#c0392b;">♦</div>
+          </div>
           <div class="special-card-title">Tian</div>
           <p>Kan spelas på <strong>vad som helst</strong>. Tar bort hela högen ur spel för alltid. Spelaren <strong>spelar igen!</strong></p>
         </div>
