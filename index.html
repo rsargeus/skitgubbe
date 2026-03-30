@@ -92,7 +92,7 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 8px;
-    padding: 12px 24px;
+    padding: 12px 90px 12px 16px;
     margin: 0 0 56px;
     background: rgba(13, 25, 17, 0.75);
     backdrop-filter: blur(20px);
@@ -605,6 +605,34 @@
 
   .ai-answer-box p { line-height: 1.75; font-size: 0.97rem; }
 
+  /* LANG TOGGLE */
+  .lang-toggle {
+    position: fixed;
+    top: 12px;
+    right: 16px;
+    z-index: 200;
+    background: rgba(13,25,17,0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(212,168,83,0.4);
+    color: var(--gold-light);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: all 0.18s;
+    font-family: 'Inter', sans-serif;
+    white-space: nowrap;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+  }
+  .lang-toggle:hover {
+    background: var(--gold);
+    color: var(--felt-dark);
+    border-color: var(--gold);
+  }
+
   /* FOOTER */
   footer {
     text-align: center;
@@ -639,21 +667,15 @@
       padding: 0 20px;
     }
 
-    /* NAV: horisontell scroll istället för radbrytning */
     nav {
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      justify-content: flex-start;
+      flex-wrap: wrap;
+      justify-content: center;
       margin: 0 0 40px;
-      padding: 10px 20px;
+      padding: 10px 16px;
       gap: 7px;
-      scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
     }
-    nav::-webkit-scrollbar { display: none; }
     nav a {
-      flex-shrink: 0;
-      padding: 8px 16px; /* Större touch-yta */
+      padding: 8px 14px;
       font-size: 0.8rem;
     }
 
@@ -701,9 +723,9 @@
     </div>
   </div>
   <h1>Skitgubbe</h1>
-  <p class="subtitle">Komplett spelguide</p>
+  <p class="subtitle" data-i18n="header.subtitle">Komplett spelguide</p>
   <div class="gold-line"></div>
-  <p style="opacity:0.6; font-style:italic; font-size:0.95rem;">Bli av med dina kort – eller bli Skitgubbe 💩</p>
+  <p style="opacity:0.6; font-style:italic; font-size:0.95rem;" data-i18n="header.tagline">Bli av med dina kort – eller bli Skitgubbe 💩</p>
   <a href="#snabbguide" style="
     display:inline-block; margin-top:24px;
     background:var(--gold); color:var(--felt-dark);
@@ -713,20 +735,21 @@
     text-decoration:none;
     box-shadow:0 4px 20px rgba(212,168,83,0.35);
     transition:all 0.2s;
-  " onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">Ny? Lär dig på 5 minuter →</a>
+  " onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'" data-i18n="header.cta">Ny? Lär dig på 5 minuter →</a>
 </header>
 
 <nav>
-  <a href="#snabbguide">⚡ Snabbguide</a>
-  <a href="#oversikt">Översikt</a>
-  <a href="#forberedelser">Förberedelser</a>
-  <a href="#spelgang">Spelgång</a>
-  <a href="#specialkort">Specialkort</a>
-  <a href="#vinna">Vinna & förlora</a>
-  <a href="#strategi">Strategi</a>
-  <a href="#faq">Regeltvister</a>
-  <a href="#fraga">Fråga AI</a>
+  <a href="#snabbguide" data-i18n="nav.quickguide">⚡ Snabbguide</a>
+  <a href="#oversikt" data-i18n="nav.overview">Översikt</a>
+  <a href="#forberedelser" data-i18n="nav.preparation">Förberedelser</a>
+  <a href="#spelgang" data-i18n="nav.gameplay">Spelgång</a>
+  <a href="#specialkort" data-i18n="nav.special">Specialkort</a>
+  <a href="#vinna" data-i18n="nav.winning">Vinna & förlora</a>
+  <a href="#strategi" data-i18n="nav.strategy">Strategi</a>
+  <a href="#faq" data-i18n="nav.disputes">Regeltvister</a>
+  <a href="#fraga" data-i18n="nav.askAI">Fråga AI</a>
 </nav>
+<button class="lang-toggle" id="lang-toggle" onclick="toggleLang()">🇬🇧 EN</button>
 
 <div class="container">
 
@@ -734,43 +757,43 @@
   <section id="snabbguide">
     <div class="section-header">
       <div class="section-icon">⚡</div>
-      <h2>Spelet på 5 minuter</h2>
+      <h2 data-i18n="quick.h2">Spelet på 5 minuter</h2>
     </div>
     <div class="card">
       <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:0; border-radius:10px; overflow:hidden; border:1px solid rgba(212,168,83,0.15);">
         <div style="padding:20px 22px; border-right:1px solid rgba(212,168,83,0.1); border-bottom:1px solid rgba(212,168,83,0.1);">
-          <div style="font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--gold); font-weight:900; margin-bottom:6px;">Målet</div>
-          <p style="font-size:0.9rem; opacity:0.8; line-height:1.5;">Bli av med alla dina kort. Sist kvar med kort = Skitgubbe 💩</p>
+          <div style="font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--gold); font-weight:900; margin-bottom:6px;" data-i18n="quick.goal">Målet</div>
+          <p style="font-size:0.9rem; opacity:0.8; line-height:1.5;" data-i18n="quick.goal.text">Bli av med alla dina kort. Sist kvar med kort = Skitgubbe 💩</p>
         </div>
         <div style="padding:20px 22px; border-right:1px solid rgba(212,168,83,0.1); border-bottom:1px solid rgba(212,168,83,0.1);">
-          <div style="font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--gold); font-weight:900; margin-bottom:6px;">Lägg</div>
-          <p style="font-size:0.9rem; opacity:0.8; line-height:1.5;">Lika högt eller högre valör än föregående.</p>
+          <div style="font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--gold); font-weight:900; margin-bottom:6px;" data-i18n="quick.play">Lägg</div>
+          <p style="font-size:0.9rem; opacity:0.8; line-height:1.5;" data-i18n="quick.play.text">Lika högt eller högre valör än föregående.</p>
         </div>
         <div style="padding:20px 22px; border-bottom:1px solid rgba(212,168,83,0.1);">
-          <div style="font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--gold); font-weight:900; margin-bottom:6px;">Ta högen</div>
-          <p style="font-size:0.9rem; opacity:0.8; line-height:1.5;">Kan du inte lägga? Ta hela högen. Nästa spelar fritt.</p>
+          <div style="font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--gold); font-weight:900; margin-bottom:6px;" data-i18n="quick.take">Ta högen</div>
+          <p style="font-size:0.9rem; opacity:0.8; line-height:1.5;" data-i18n="quick.take.text">Kan du inte lägga? Ta hela högen. Nästa spelar fritt.</p>
         </div>
         <div style="padding:20px 22px; border-right:1px solid rgba(212,168,83,0.1);">
           <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
             <div style="background:var(--card-white); color:var(--black); font-family:'Playfair Display',serif; font-weight:900; font-size:1rem; width:32px; height:42px; border-radius:5px; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(0,0,0,0.3);">2</div>
-            <div style="font-family:'Playfair Display',serif; font-size:1rem; color:var(--gold); font-weight:700;">Tvåan</div>
+            <div style="font-family:'Playfair Display',serif; font-size:1rem; color:var(--gold); font-weight:700;" data-i18n="quick.two.title">Tvåan</div>
           </div>
-          <p style="font-size:0.9rem; opacity:0.8; line-height:1.5;">Kan läggas på vad som helst. Nollställer högen.</p>
+          <p style="font-size:0.9rem; opacity:0.8; line-height:1.5;" data-i18n="quick.two.text">Kan läggas på vad som helst. Nollställer högen.</p>
         </div>
         <div style="padding:20px 22px; border-right:1px solid rgba(212,168,83,0.1);">
           <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
             <div style="background:linear-gradient(145deg,#fffaed,#f5e8c0); border:2px solid var(--gold); color:#7a5c10; font-family:'Playfair Display',serif; font-weight:900; font-size:1rem; width:32px; height:42px; border-radius:5px; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(0,0,0,0.3);">10</div>
-            <div style="font-family:'Playfair Display',serif; font-size:1rem; color:var(--gold); font-weight:700;">Tian</div>
+            <div style="font-family:'Playfair Display',serif; font-size:1rem; color:var(--gold); font-weight:700;" data-i18n="quick.ten.title">Tian</div>
           </div>
-          <p style="font-size:0.9rem; opacity:0.8; line-height:1.5;">Kan läggas på vad som helst. Tar bort högen. Spela igen!</p>
+          <p style="font-size:0.9rem; opacity:0.8; line-height:1.5;" data-i18n="quick.ten.text">Kan läggas på vad som helst. Tar bort högen. Spela igen!</p>
         </div>
         <div style="padding:20px 22px;">
-          <div style="font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--gold); font-weight:900; margin-bottom:6px;">Fyra lika</div>
-          <p style="font-size:0.9rem; opacity:0.8; line-height:1.5;">Fyra kort av samma valör överst → högen bort. Spela igen!</p>
+          <div style="font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--gold); font-weight:900; margin-bottom:6px;" data-i18n="quick.four">Fyra lika</div>
+          <p style="font-size:0.9rem; opacity:0.8; line-height:1.5;" data-i18n="quick.four.text">Fyra kort av samma valör överst → högen bort. Spela igen!</p>
         </div>
       </div>
       <div style="margin-top:20px; text-align:right;">
-        <a href="#forberedelser" style="color:var(--gold); font-size:0.88rem; font-weight:500; text-decoration:none; opacity:0.8;">Lär dig mer detaljerat nedan ↓</a>
+        <a href="#forberedelser" style="color:var(--gold); font-size:0.88rem; font-weight:500; text-decoration:none; opacity:0.8;" data-i18n="quick.more">Lär dig mer detaljerat nedan ↓</a>
       </div>
     </div>
   </section>
@@ -779,14 +802,14 @@
   <section id="oversikt">
     <div class="section-header">
       <div class="section-icon">🃏</div>
-      <h2>Översikt</h2>
+      <h2 data-i18n="overview.h2">Översikt</h2>
     </div>
     <div class="card">
-      <p>Skitgubbe är ett klassiskt svenskt kortspel för <strong>2–6 spelare</strong>. Målet är enkelt: <strong>bli av med alla dina kort</strong>. Den som sitter kvar med kort i handen när alla andra är klara förlorar och kallas <strong>"Skitgubbe"</strong>.</p>
-      <p style="margin-top:14px;">Spelas med en <strong>standardlek med 52 kort</strong> (utan jokrar). Ingen annan utrustning behövs.</p>
+      <p data-i18n-html="overview.p1">Skitgubbe är ett klassiskt svenskt kortspel för <strong>2–6 spelare</strong>. Målet är enkelt: <strong>bli av med alla dina kort</strong>. Den som sitter kvar med kort i handen när alla andra är klara förlorar och kallas <strong>"Skitgubbe"</strong>.</p>
+      <p style="margin-top:14px;" data-i18n-html="overview.p2">Spelas med en <strong>standardlek med 52 kort</strong> (utan jokrar). Ingen annan utrustning behövs.</p>
 
-      <h3>Kortens rangordning</h3>
-      <p style="margin-bottom:12px; font-size:0.9rem; opacity:0.7;">Lägst till höger → högst till vänster</p>
+      <h3 data-i18n="overview.h3rank">Kortens rangordning</h3>
+      <p style="margin-bottom:12px; font-size:0.9rem; opacity:0.7;" data-i18n="overview.rankdesc">Lägst till höger → högst till vänster</p>
       <div class="rank-display">
         <div class="rank-card"><span>3</span><span class="card-suit">♣</span></div>
         <span class="rank-arrow">→</span>
@@ -814,129 +837,92 @@
         <span class="rank-arrow">→</span>
         <div class="rank-card special"><span>10</span><span class="card-suit red">♦</span></div>
       </div>
-      <p style="font-size:0.9rem; opacity:0.7; margin-top:10px;">⭐ <strong>10 och 2 är specialkort.</strong></p>
+      <p style="font-size:0.9rem; opacity:0.7; margin-top:10px;" data-i18n-html="overview.rankfootnote">⭐ <strong>10 och 2 är specialkort.</strong></p>
     </div>
-    <div style="text-align:right; margin-top:14px;"><a href="#forberedelser" style="color:var(--gold); font-size:0.88rem; font-weight:500; text-decoration:none; opacity:0.7;">Förberedelser →</a></div>
+    <div style="text-align:right; margin-top:14px;"><a href="#forberedelser" style="color:var(--gold); font-size:0.88rem; font-weight:500; text-decoration:none; opacity:0.7;" data-i18n="overview.next">Förberedelser →</a></div>
   </section>
 
   <!-- FÖRBEREDELSER -->
   <section id="forberedelser">
     <div class="section-header">
       <div class="section-icon">🔀</div>
-      <h2>Förberedelser</h2>
+      <h2 data-i18n="prep.h2">Förberedelser</h2>
     </div>
     <div class="card">
       <ol class="steps">
-        <li class="step"><span class="step-num">1</span><span>Blanda kortleken väl.</span></li>
-        <li class="step"><span class="step-num">2</span><span>Dela ut <strong>3 handkort</strong> till varje spelare (hålls dolda).</span></li>
-        <li class="step"><span class="step-num">3</span><span>Lägg ut <strong>3 öppna bordskort</strong> med framsidan upp framför varje spelare.</span></li>
-        <li class="step"><span class="step-num">4</span><span>Lägg <strong>3 dolda bordskort</strong> med baksidan ned under de öppna.</span></li>
-        <li class="step"><span class="step-num">5</span><span>Resterande kort läggs i en <strong>dragstapel</strong> mitt på bordet.</span></li>
+        <li class="step"><span class="step-num">1</span><span data-i18n="prep.step1">Blanda kortleken väl.</span></li>
+        <li class="step"><span class="step-num">2</span><span data-i18n-html="prep.step2">Dela ut <strong>3 handkort</strong> till varje spelare (hålls dolda).</span></li>
+        <li class="step"><span class="step-num">3</span><span data-i18n-html="prep.step3">Lägg ut <strong>3 öppna bordskort</strong> med framsidan upp framför varje spelare.</span></li>
+        <li class="step"><span class="step-num">4</span><span data-i18n-html="prep.step4">Lägg <strong>3 dolda bordskort</strong> med baksidan ned under de öppna.</span></li>
+        <li class="step"><span class="step-num">5</span><span data-i18n-html="prep.step5">Resterande kort läggs i en <strong>dragstapel</strong> mitt på bordet.</span></li>
       </ol>
 
-      <h3>Hur bordet ser ut</h3>
-      <div style="background:rgba(0,0,0,0.25); border-radius:12px; padding:24px 16px; margin:16px 0; text-align:center;">
-        <div style="font-size:0.72rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; opacity:0.5; margin-bottom:12px;">Spelare</div>
-        <div style="display:flex; justify-content:center; gap:6px; margin-bottom:6px;">
-          <div style="background:var(--card-white); color:var(--black); width:36px; height:50px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.65rem; font-weight:600; color:#555; box-shadow:0 2px 6px rgba(0,0,0,0.3);">HAND</div>
-          <div style="background:var(--card-white); color:var(--black); width:36px; height:50px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.65rem; font-weight:600; color:#555; box-shadow:0 2px 6px rgba(0,0,0,0.3);">HAND</div>
-          <div style="background:var(--card-white); color:var(--black); width:36px; height:50px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.65rem; font-weight:600; color:#555; box-shadow:0 2px 6px rgba(0,0,0,0.3);">HAND</div>
-        </div>
-        <div style="font-size:0.65rem; opacity:0.45; margin-bottom:8px;">↕ hålls dolda</div>
-        <div style="display:flex; justify-content:center; gap:6px; margin-bottom:4px;">
-          <div style="background:linear-gradient(145deg,#fffaed,#f5e8c0); border:1px solid var(--gold); width:36px; height:50px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.6rem; font-weight:600; color:#7a5c10; box-shadow:0 2px 6px rgba(0,0,0,0.3);">ÖPPEN</div>
-          <div style="background:linear-gradient(145deg,#fffaed,#f5e8c0); border:1px solid var(--gold); width:36px; height:50px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.6rem; font-weight:600; color:#7a5c10; box-shadow:0 2px 6px rgba(0,0,0,0.3);">ÖPPEN</div>
-          <div style="background:linear-gradient(145deg,#fffaed,#f5e8c0); border:1px solid var(--gold); width:36px; height:50px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.6rem; font-weight:600; color:#7a5c10; box-shadow:0 2px 6px rgba(0,0,0,0.3);">ÖPPEN</div>
-        </div>
-        <div style="display:flex; justify-content:center; gap:6px; margin-bottom:20px;">
-          <div style="background:rgba(212,168,83,0.2); border:1px solid rgba(212,168,83,0.3); width:36px; height:50px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.6rem; font-weight:600; color:var(--gold-light);">DOLD</div>
-          <div style="background:rgba(212,168,83,0.2); border:1px solid rgba(212,168,83,0.3); width:36px; height:50px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.6rem; font-weight:600; color:var(--gold-light);">DOLD</div>
-          <div style="background:rgba(212,168,83,0.2); border:1px solid rgba(212,168,83,0.3); width:36px; height:50px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.6rem; font-weight:600; color:var(--gold-light);">DOLD</div>
-        </div>
-        <div style="background:rgba(212,168,83,0.15); border:1px solid rgba(212,168,83,0.25); border-radius:8px; padding:10px 16px; display:inline-block; font-size:0.8rem; font-weight:600; color:var(--gold-light); margin-bottom:20px;">DRAGSTAPEL</div>
-        <div style="display:flex; justify-content:center; gap:6px; margin-bottom:4px;">
-          <div style="background:rgba(212,168,83,0.2); border:1px solid rgba(212,168,83,0.3); width:36px; height:50px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.6rem; font-weight:600; color:var(--gold-light);">DOLD</div>
-          <div style="background:rgba(212,168,83,0.2); border:1px solid rgba(212,168,83,0.3); width:36px; height:50px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.6rem; font-weight:600; color:var(--gold-light);">DOLD</div>
-          <div style="background:rgba(212,168,83,0.2); border:1px solid rgba(212,168,83,0.3); width:36px; height:50px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.6rem; font-weight:600; color:var(--gold-light);">DOLD</div>
-        </div>
-        <div style="display:flex; justify-content:center; gap:6px; margin-bottom:6px;">
-          <div style="background:linear-gradient(145deg,#fffaed,#f5e8c0); border:1px solid var(--gold); width:36px; height:50px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.6rem; font-weight:600; color:#7a5c10; box-shadow:0 2px 6px rgba(0,0,0,0.3);">ÖPPEN</div>
-          <div style="background:linear-gradient(145deg,#fffaed,#f5e8c0); border:1px solid var(--gold); width:36px; height:50px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.6rem; font-weight:600; color:#7a5c10; box-shadow:0 2px 6px rgba(0,0,0,0.3);">ÖPPEN</div>
-          <div style="background:linear-gradient(145deg,#fffaed,#f5e8c0); border:1px solid var(--gold); width:36px; height:50px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.6rem; font-weight:600; color:#7a5c10; box-shadow:0 2px 6px rgba(0,0,0,0.3);">ÖPPEN</div>
-        </div>
-        <div style="display:flex; justify-content:center; gap:6px; margin-bottom:6px;">
-          <div style="background:var(--card-white); width:36px; height:50px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.65rem; font-weight:600; color:#555; box-shadow:0 2px 6px rgba(0,0,0,0.3);">HAND</div>
-          <div style="background:var(--card-white); width:36px; height:50px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.65rem; font-weight:600; color:#555; box-shadow:0 2px 6px rgba(0,0,0,0.3);">HAND</div>
-          <div style="background:var(--card-white); width:36px; height:50px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.65rem; font-weight:600; color:#555; box-shadow:0 2px 6px rgba(0,0,0,0.3);">HAND</div>
-        </div>
-        <div style="font-size:0.72rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; opacity:0.5; margin-top:8px;">Spelare</div>
-      </div>
 
-      <h3>Förberedelserundan</h3>
-      <p>Innan spelet börjar får varje spelare fritt flytta kort. Rundan pågår tills alla är nöjda – man frågar runt bordet.</p>
+      <h3 data-i18n="prep.h3prepround">Förberedelserundan</h3>
+      <p data-i18n="prep.prepround.p">Innan spelet börjar får varje spelare fritt flytta kort. Rundan pågår tills alla är nöjda – man frågar runt bordet.</p>
       <ul class="rules-list" style="margin-top: 14px;">
-        <li>Flytta fritt kort mellan hand och egna öppna bordskort.</li>
-        <li>Lägg ett handkort på <strong>valfri motståndares</strong> öppna bordskort – de får då 2 kort eller fler på samma plats. Du drar ett nytt kort från stapeln, men <strong>max 3 på handen</strong>.</li>
-        <li>Motståndaren får fritt hantera sina öppna bordskort, t.ex. ta upp dem till handen.</li>
-        <li>Man kan ha fler än 3 kort på handen om de extra kommer från egna öppna bordskort – men aldrig från dragstapeln.</li>
+        <li data-i18n="prep.rule1">Flytta fritt kort mellan hand och egna öppna bordskort.</li>
+        <li data-i18n-html="prep.rule2">Lägg ett handkort på <strong>valfri motståndares</strong> öppna bordskort – de får då 2 kort eller fler på samma plats. Du drar ett nytt kort från stapeln, men <strong>max 3 på handen</strong>.</li>
+        <li data-i18n="prep.rule3">Motståndaren får fritt hantera sina öppna bordskort, t.ex. ta upp dem till handen.</li>
+        <li data-i18n="prep.rule4">Man kan ha fler än 3 kort på handen om de extra kommer från egna öppna bordskort – men aldrig från dragstapeln.</li>
       </ul>
 
-      <h3>Vem börjar?</h3>
-      <p>Den spelare med <strong>lägsta kortet på hand</strong> börjar. Lika valör? Jämför näst lägsta – och så vidare tills någon har ett lägre kort.</p>
+      <h3 data-i18n="prep.h3start">Vem börjar?</h3>
+      <p data-i18n-html="prep.start.p">Den spelare med <strong>lägsta kortet på hand</strong> börjar. Lika valör? Jämför näst lägsta – och så vidare tills någon har ett lägre kort.</p>
     </div>
-    <div style="text-align:right; margin-top:14px;"><a href="#spelgang" style="color:var(--gold); font-size:0.88rem; font-weight:500; text-decoration:none; opacity:0.7;">Spelgång →</a></div>
+    <div style="text-align:right; margin-top:14px;"><a href="#spelgang" style="color:var(--gold); font-size:0.88rem; font-weight:500; text-decoration:none; opacity:0.7;" data-i18n="prep.next">Spelgång →</a></div>
   </section>
 
   <!-- SPELGÅNG -->
   <section id="spelgang">
     <div class="section-header">
       <div class="section-icon">🎴</div>
-      <h2>Spelgång</h2>
+      <h2 data-i18n="gameplay.h2">Spelgång</h2>
     </div>
     <div class="card">
-      <p>Spelarna turas om <strong>medsols</strong>. På din tur väljer du ett av tre alternativ:</p>
+      <p data-i18n-html="gameplay.intro">Spelarna turas om <strong>medsols</strong>. På din tur väljer du ett av tre alternativ:</p>
 
       <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:20px 0;">
         <div style="background:rgba(0,0,0,0.2); border:1px solid rgba(212,168,83,0.2); border-top:3px solid var(--gold); border-radius:0 0 10px 10px; padding:20px;">
           <div style="font-size:1.6rem; margin-bottom:8px;">↑</div>
-          <div style="font-family:'Playfair Display',serif; color:var(--gold); font-size:1rem; font-weight:700; margin-bottom:8px;">Lägg kort</div>
-          <p style="font-size:0.88rem; opacity:0.8; line-height:1.55;">Lägg ett eller flera kort av <strong>samma valör</strong>, lika högt eller högre än föregående.</p>
-          <p style="font-size:0.8rem; opacity:0.5; margin-top:8px; font-style:italic;">T.ex. tre 7:or på en 6:a</p>
+          <div style="font-family:'Playfair Display',serif; color:var(--gold); font-size:1rem; font-weight:700; margin-bottom:8px;" data-i18n="gameplay.play.title">Lägg kort</div>
+          <p style="font-size:0.88rem; opacity:0.8; line-height:1.55;" data-i18n-html="gameplay.play.desc">Lägg ett eller flera kort av <strong>samma valör</strong>, lika högt eller högre än föregående.</p>
+          <p style="font-size:0.8rem; opacity:0.5; margin-top:8px; font-style:italic;" data-i18n="gameplay.play.hint">T.ex. tre 7:or på en 6:a</p>
         </div>
         <div style="background:rgba(0,0,0,0.2); border:1px solid rgba(212,168,83,0.2); border-top:3px solid rgba(192,57,43,0.7); border-radius:0 0 10px 10px; padding:20px;">
           <div style="font-size:1.6rem; margin-bottom:8px;">↓</div>
-          <div style="font-family:'Playfair Display',serif; color:var(--gold); font-size:1rem; font-weight:700; margin-bottom:8px;">Ta högen</div>
-          <p style="font-size:0.88rem; opacity:0.8; line-height:1.55;">Kan du inte eller vill inte lägga? Ta upp hela högen. Nästa spelare <strong>spelar fritt</strong>.</p>
-          <p style="font-size:0.8rem; opacity:0.5; margin-top:8px; font-style:italic;">Alltid tillåtet</p>
+          <div style="font-family:'Playfair Display',serif; color:var(--gold); font-size:1rem; font-weight:700; margin-bottom:8px;" data-i18n="gameplay.take.title">Ta högen</div>
+          <p style="font-size:0.88rem; opacity:0.8; line-height:1.55;" data-i18n-html="gameplay.take.desc">Kan du inte eller vill inte lägga? Ta upp hela högen. Nästa spelare <strong>spelar fritt</strong>.</p>
+          <p style="font-size:0.8rem; opacity:0.5; margin-top:8px; font-style:italic;" data-i18n="gameplay.take.hint">Alltid tillåtet</p>
         </div>
         <div style="background:rgba(0,0,0,0.2); border:1px solid rgba(212,168,83,0.2); border-top:3px solid rgba(212,168,83,0.5); border-radius:0 0 10px 10px; padding:20px;">
           <div style="font-size:1.6rem; margin-bottom:8px;">🎲</div>
-          <div style="font-family:'Playfair Display',serif; color:var(--gold); font-size:1rem; font-weight:700; margin-bottom:8px;">Chansa</div>
-          <p style="font-size:0.88rem; opacity:0.8; line-height:1.55;">Vänd upp översta kortet från stapeln. Tillräckligt högt → lägg det. För lågt → ta hela högen.</p>
-          <p style="font-size:0.8rem; opacity:0.5; margin-top:8px; font-style:italic;">Kräver dragstapel kvar</p>
+          <div style="font-family:'Playfair Display',serif; color:var(--gold); font-size:1rem; font-weight:700; margin-bottom:8px;" data-i18n="gameplay.gamble.title">Chansa</div>
+          <p style="font-size:0.88rem; opacity:0.8; line-height:1.55;" data-i18n-html="gameplay.gamble.desc">Vänd upp översta kortet från stapeln. Tillräckligt högt → lägg det. För lågt → ta hela högen.</p>
+          <p style="font-size:0.8rem; opacity:0.5; margin-top:8px; font-style:italic;" data-i18n="gameplay.gamble.hint">Kräver dragstapel kvar</p>
         </div>
       </div>
 
       <ul class="rules-list" style="margin-top:4px;">
-        <li>Kort ur spel (via 10 eller fyra lika) kommer <strong>aldrig</strong> tillbaka.</li>
-        <li>Misslyckas du med chansen tar du högen <strong>inklusive</strong> det chansade kortet – även om du hade handkort som gick att lägga.</li>
+        <li data-i18n-html="gameplay.rule1">Kort ur spel (via 10 eller fyra lika) kommer <strong>aldrig</strong> tillbaka.</li>
+        <li data-i18n-html="gameplay.rule2">Misslyckas du med chansen tar du högen <strong>inklusive</strong> det chansade kortet – även om du hade handkort som gick att lägga.</li>
       </ul>
 
-      <h3>Kortens ordning under spelet</h3>
+      <h3 data-i18n="gameplay.h3order">Kortens ordning under spelet</h3>
       <ol class="steps" style="margin-top: 8px;">
-        <li class="step"><span class="step-num">1</span><span><strong>Handkort</strong> – håll alltid minst 3 på handen (dra efter varje spelat kort medan stapeln finns).</span></li>
-        <li class="step"><span class="step-num">2</span><span><strong>Öppna bordskort</strong> – spelas när handkorten är slut. Flera av samma valör får läggas samtidigt.</span></li>
-        <li class="step"><span class="step-num">3</span><span><strong>Dolda bordskort</strong> – vänd upp ett i taget utan att titta. För lågt? Ta upp det plus hela högen.</span></li>
+        <li class="step"><span class="step-num">1</span><span data-i18n-html="gameplay.order1"><strong>Handkort</strong> – håll alltid minst 3 på handen (dra efter varje spelat kort medan stapeln finns).</span></li>
+        <li class="step"><span class="step-num">2</span><span data-i18n-html="gameplay.order2"><strong>Öppna bordskort</strong> – spelas när handkorten är slut. Flera av samma valör får läggas samtidigt.</span></li>
+        <li class="step"><span class="step-num">3</span><span data-i18n-html="gameplay.order3"><strong>Dolda bordskort</strong> – vänd upp ett i taget utan att titta. För lågt? Ta upp det plus hela högen.</span></li>
       </ol>
     </div>
-    <div style="text-align:right; margin-top:14px;"><a href="#specialkort" style="color:var(--gold); font-size:0.88rem; font-weight:500; text-decoration:none; opacity:0.7;">Specialkort →</a></div>
+    <div style="text-align:right; margin-top:14px;"><a href="#specialkort" style="color:var(--gold); font-size:0.88rem; font-weight:500; text-decoration:none; opacity:0.7;" data-i18n="gameplay.next">Specialkort →</a></div>
   </section>
 
   <!-- SPECIALKORT -->
   <section id="specialkort">
     <div class="section-header">
       <div class="section-icon">⭐</div>
-      <h2>Specialkort</h2>
+      <h2 data-i18n="special.h2">Specialkort</h2>
     </div>
     <div class="card">
       <div class="special-cards">
@@ -945,16 +931,16 @@
             <div style="font-size:2.2rem; line-height:1;">2</div>
             <div style="font-size:1.2rem; line-height:1;">♠</div>
           </div>
-          <div class="special-card-title">Tvåan</div>
-          <p>Kan spelas på <strong>vad som helst</strong>. Återställer högen – nästa spelare får lägga vad den vill.</p>
+          <div class="special-card-title" data-i18n="special.two.title">Tvåan</div>
+          <p data-i18n-html="special.two.desc">Kan spelas på <strong>vad som helst</strong>. Återställer högen – nästa spelare får lägga vad den vill.</p>
         </div>
         <div class="special-card-item">
           <div style="background:linear-gradient(145deg,#fff8e8,#f5e8c0); border:2px solid var(--gold); width:72px; height:96px; border-radius:10px; box-shadow:0 6px 20px rgba(0,0,0,0.5); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; font-family:'Playfair Display',serif; font-weight:900; color:#8b6914; margin:0 auto 14px;">
             <div style="font-size:1.9rem; line-height:1;">10</div>
             <div style="font-size:1.2rem; line-height:1; color:#c0392b;">♦</div>
           </div>
-          <div class="special-card-title">Tian</div>
-          <p>Kan spelas på <strong>vad som helst</strong>. Tar bort hela högen ur spel för alltid. Spelaren <strong>spelar igen!</strong></p>
+          <div class="special-card-title" data-i18n="special.ten.title">Tian</div>
+          <p data-i18n-html="special.ten.desc">Kan spelas på <strong>vad som helst</strong>. Tar bort hela högen ur spel för alltid. Spelaren <strong>spelar igen!</strong></p>
         </div>
         <div class="special-card-item">
           <div style="display:flex; justify-content:center; align-items:center; height:80px; margin-bottom:16px;">
@@ -965,39 +951,39 @@
               <div style="position:absolute; left:66px; top:8px;  transform:rotate(12deg);  width:44px; height:60px; background:linear-gradient(135deg,#fff8e8,#f5e8c0); border:2px solid var(--gold); border-radius:6px; box-shadow:2px 4px 8px rgba(0,0,0,0.5); display:flex; flex-direction:column; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-weight:900; font-size:1.1rem; color:#8b6914;">7<span style="font-size:0.65rem; line-height:1;">♣</span></div>
             </div>
           </div>
-          <div class="special-card-title">Fyra lika</div>
-          <p>Fyra kort av samma valör överst → högen försvinner ur spel. Spelaren som lade sista kortet <strong>spelar igen!</strong></p>
+          <div class="special-card-title" data-i18n="special.four.title">Fyra lika</div>
+          <p data-i18n-html="special.four.desc">Fyra kort av samma valör överst → högen försvinner ur spel. Spelaren som lade sista kortet <strong>spelar igen!</strong></p>
         </div>
       </div>
     </div>
-    <div style="text-align:right; margin-top:14px;"><a href="#vinna" style="color:var(--gold); font-size:0.88rem; font-weight:500; text-decoration:none; opacity:0.7;">Vinna & förlora →</a></div>
+    <div style="text-align:right; margin-top:14px;"><a href="#vinna" style="color:var(--gold); font-size:0.88rem; font-weight:500; text-decoration:none; opacity:0.7;" data-i18n="special.next">Vinna & förlora →</a></div>
   </section>
 
   <!-- VINNA & FÖRLORA -->
   <section id="vinna">
     <div class="section-header">
       <div class="section-icon">🏆</div>
-      <h2>Vinna & Förlora</h2>
+      <h2 data-i18n="win.h2">Vinna & Förlora</h2>
     </div>
     <div class="card">
-      <p>En spelare är <strong>klar</strong> när hen har spelat alla handkort, öppna bordskort och dolda bordskort. Spelet fortsätter tills bara en spelare är kvar.</p>
-      <p style="margin-top:10px;">I omgångsspel brukar Skitgubbe dela ut korten nästa runda.</p>
+      <p data-i18n-html="win.p1">En spelare är <strong>klar</strong> när hen har spelat alla handkort, öppna bordskort och dolda bordskort. Spelet fortsätter tills bara en spelare är kvar.</p>
+      <p style="margin-top:10px;" data-i18n="win.p2">I omgångsspel brukar Skitgubbe dela ut korten nästa runda.</p>
 
       <div class="forbidden-box" style="margin-top:20px;">
-        <div class="forbidden-title">🚫 Förbjudna sista drag</div>
-        <p style="font-size:0.95rem; opacity:0.9;">Man får <strong>inte</strong> avsluta med dessa som sitt sista drag. Gäller handkort och dolda bordskort.</p>
+        <div class="forbidden-title" data-i18n="win.forbidden.title">🚫 Förbjudna sista drag</div>
+        <p style="font-size:0.95rem; opacity:0.9;" data-i18n-html="win.forbidden.desc">Man får <strong>inte</strong> avsluta med dessa som sitt sista drag. Gäller handkort och dolda bordskort.</p>
         <div class="forbidden-cards">
           <span class="forbidden-badge">A</span>
           <span class="forbidden-badge">10</span>
           <span class="forbidden-badge">2</span>
           <span class="forbidden-badge">4 lika</span>
         </div>
-        <p style="margin-top:12px; font-size:0.9rem; opacity:0.8;">→ Måste ta upp hela högen och fortsätta spela.<br>→ Om högen är tom: stå över sin tur.</p>
+        <p style="margin-top:12px; font-size:0.9rem; opacity:0.8;" data-i18n-html="win.forbidden.consequence">→ Måste ta upp hela högen och fortsätta spela.<br>→ Om högen är tom: stå över sin tur.</p>
       </div>
 
       <div class="loser-box">
         <span class="loser-emoji">💩</span>
-        <p>Sist kvar med kort = <strong>Skitgubbe</strong></p>
+        <p data-i18n-html="win.loser">Sist kvar med kort = <strong>Skitgubbe</strong></p>
       </div>
     </div>
   </section>
@@ -1006,31 +992,31 @@
   <section id="strategi">
     <div class="section-header">
       <div class="section-icon">🧠</div>
-      <h2>Strategi & Tips</h2>
+      <h2 data-i18n="strategy.h2">Strategi & Tips</h2>
     </div>
     <div class="strategy-grid">
       <div class="strategy-card">
-        <div class="strategy-level"><span class="level-pip"></span> Grundnivå</div>
+        <div class="strategy-level"><span class="level-pip"></span> <span data-i18n="strategy.basic">Grundnivå</span></div>
         <ul>
-          <li>Spara höga kort och specialkort till när du verkligen behöver dem.</li>
-          <li>Lägg dina bästa kort som öppna bordskort under förberedelserundan.</li>
-          <li>Töm handen snabbt i början – det kostar dig lite.</li>
+          <li data-i18n="strategy.basic.1">Spara höga kort och specialkort till när du verkligen behöver dem.</li>
+          <li data-i18n="strategy.basic.2">Lägg dina bästa kort som öppna bordskort under förberedelserundan.</li>
+          <li data-i18n="strategy.basic.3">Töm handen snabbt i början – det kostar dig lite.</li>
         </ul>
       </div>
       <div class="strategy-card">
-        <div class="strategy-level"><span class="level-pip"></span><span class="level-pip"></span> Mellannivå</div>
+        <div class="strategy-level"><span class="level-pip"></span><span class="level-pip"></span> <span data-i18n="strategy.mid">Mellannivå</span></div>
         <ul>
-          <li>Tvinga motspelarna ta högen genom att lägga höga kort när de har lite på hand.</li>
-          <li>Lägg 10:or när högen är stor och otymplig.</li>
-          <li>Håll koll på hur många kort motspelarna har.</li>
+          <li data-i18n="strategy.mid.1">Tvinga motspelarna ta högen genom att lägga höga kort när de har lite på hand.</li>
+          <li data-i18n="strategy.mid.2">Lägg 10:or när högen är stor och otymplig.</li>
+          <li data-i18n="strategy.mid.3">Håll koll på hur många kort motspelarna har.</li>
         </ul>
       </div>
       <div class="strategy-card">
-        <div class="strategy-level"><span class="level-pip"></span><span class="level-pip"></span><span class="level-pip"></span> Avancerat</div>
+        <div class="strategy-level"><span class="level-pip"></span><span class="level-pip"></span><span class="level-pip"></span> <span data-i18n="strategy.advanced">Avancerat</span></div>
         <ul>
-          <li>Bluffa med dolda bordskort – låt motståndaren tro du har bra kort kvar.</li>
-          <li>Koordinera fyra lika – spara din fyra om tre lagts.</li>
-          <li>2:or är mångsidig valuta – nollställ när du sitter fast, inte i onödan.</li>
+          <li data-i18n="strategy.advanced.1">Timing är allt med 10:an – spara den tills högen är stor så du rensar bordet och får spela igen i ett kritiskt läge.</li>
+          <li data-i18n="strategy.advanced.2">Chansa när det lönar sig – chansning är starkast när högen är stor och din hand är svag. Med bra handkort är risken sällan värd det.</li>
+          <li data-i18n="strategy.advanced.3">Rikta trycket rätt – när en spelare börjar på sina bordskort är de sårbara. Lägg höga kort för att tvinga dem ta högen och förlänga deras spel.</li>
         </ul>
       </div>
     </div>
@@ -1040,37 +1026,37 @@
   <section id="faq">
     <div class="section-header">
       <div class="section-icon">❓</div>
-      <h2>Vanliga Regeltvister</h2>
+      <h2 data-i18n="faq.h2">Vanliga Regeltvister</h2>
     </div>
     <div class="card">
       <div class="faq-list">
         <div class="faq-item">
-          <div class="faq-q">Kan man lägga ett 2 på ett 10? <span class="faq-toggle">+</span></div>
-          <div class="faq-a"><p>Ja. Specialkort (2 och 10) kan alltid spelas oavsett vad som ligger överst.</p></div>
+          <div class="faq-q"><span data-i18n="faq.q1">Kan man lägga ett 2 på ett 10?</span> <span class="faq-toggle">+</span></div>
+          <div class="faq-a"><p data-i18n="faq.a1">Ja. Specialkort (2 och 10) kan alltid spelas oavsett vad som ligger överst.</p></div>
         </div>
         <div class="faq-item">
-          <div class="faq-q">Om jag lägger ett 10 och högen försvinner – vad spelar jag sedan? <span class="faq-toggle">+</span></div>
-          <div class="faq-a"><p>Du spelar vad du vill, eftersom högen är tom. Det är precis som att börja en ny runda.</p></div>
+          <div class="faq-q"><span data-i18n="faq.q2">Om jag lägger ett 10 och högen försvinner – vad spelar jag sedan?</span> <span class="faq-toggle">+</span></div>
+          <div class="faq-a"><p data-i18n="faq.a2">Du spelar vad du vill, eftersom högen är tom. Det är precis som att börja en ny runda.</p></div>
         </div>
         <div class="faq-item">
-          <div class="faq-q">Räknas fyra lika om de läggs av olika spelare i följd? <span class="faq-toggle">+</span></div>
-          <div class="faq-a"><p>Ja, om de fyra sista korten på högen är av samma valör (oavsett vem som lade dem) försvinner högen.</p></div>
+          <div class="faq-q"><span data-i18n="faq.q3">Räknas fyra lika om de läggs av olika spelare i följd?</span> <span class="faq-toggle">+</span></div>
+          <div class="faq-a"><p data-i18n="faq.a3">Ja, om de fyra sista korten på högen är av samma valör (oavsett vem som lade dem) försvinner högen.</p></div>
         </div>
         <div class="faq-item">
-          <div class="faq-q">Vad händer om dragstapeln tar slut? <span class="faq-toggle">+</span></div>
-          <div class="faq-a"><p>Spelet fortsätter men du drar inga fler kort. Du spelar med de handkort du har kvar. Chansning är inte längre möjligt.</p></div>
+          <div class="faq-q"><span data-i18n="faq.q4">Vad händer om dragstapeln tar slut?</span> <span class="faq-toggle">+</span></div>
+          <div class="faq-a"><p data-i18n="faq.a4">Spelet fortsätter men du drar inga fler kort. Du spelar med de handkort du har kvar. Chansning är inte längre möjligt.</p></div>
         </div>
         <div class="faq-item">
-          <div class="faq-q">Måste man lägga om man kan? <span class="faq-toggle">+</span></div>
-          <div class="faq-a"><p>Nej, du kan alltid välja att ta högen istället. Men det är sällan klokt!</p></div>
+          <div class="faq-q"><span data-i18n="faq.q5">Måste man lägga om man kan?</span> <span class="faq-toggle">+</span></div>
+          <div class="faq-a"><p data-i18n="faq.a5">Nej, du kan alltid välja att ta högen istället. Men det är sällan klokt!</p></div>
         </div>
         <div class="faq-item">
-          <div class="faq-q">Kan man lägga flera kort av olika valör på en gång? <span class="faq-toggle">+</span></div>
-          <div class="faq-a"><p>Nej, bara flera kort av samma valör får läggas på en gång.</p></div>
+          <div class="faq-q"><span data-i18n="faq.q6">Kan man lägga flera kort av olika valör på en gång?</span> <span class="faq-toggle">+</span></div>
+          <div class="faq-a"><p data-i18n="faq.a6">Nej, bara flera kort av samma valör får läggas på en gång.</p></div>
         </div>
         <div class="faq-item">
-          <div class="faq-q">Kan man chansa när man har kort på handen som går att lägga? <span class="faq-toggle">+</span></div>
-          <div class="faq-a"><p>Ja! Chansning är alltid ett alternativ. Men misslyckas du måste du ta hela högen – även om du hade kort som gått att lägga.</p></div>
+          <div class="faq-q"><span data-i18n="faq.q7">Kan man chansa när man har kort på handen som går att lägga?</span> <span class="faq-toggle">+</span></div>
+          <div class="faq-a"><p data-i18n="faq.a7">Ja! Chansning är alltid ett alternativ. Men misslyckas du måste du ta hela högen – även om du hade kort som gått att lägga.</p></div>
         </div>
       </div>
     </div>
@@ -1080,13 +1066,13 @@
   <section id="fraga">
     <div class="section-header">
       <div class="section-icon">🤖</div>
-      <h2>Ställ en fråga</h2>
+      <h2 data-i18n="ask.h2">Ställ en fråga</h2>
     </div>
     <div class="card">
-      <p style="opacity:0.7; font-size:0.95rem;">Osäker på en regel? Skriv din fråga så svarar en AI baserat på spelreglerna ovan.</p>
+      <p style="opacity:0.7; font-size:0.95rem;" data-i18n="ask.desc">Osäker på en regel? Skriv din fråga så svarar en AI baserat på spelreglerna ovan.</p>
       <div class="ai-input-row">
-        <input id="ai-question" type="text" class="ai-input" placeholder="T.ex. Kan man lägga ett 2 på ett ess?">
-        <button id="ai-submit" class="ai-btn" onclick="askQuestion()">Fråga</button>
+        <input id="ai-question" type="text" class="ai-input" placeholder="T.ex. Kan man lägga ett 2 på ett ess?" data-i18n-placeholder="ask.placeholder">
+        <button id="ai-submit" class="ai-btn" onclick="askQuestion()" data-i18n="ask.btn">Fråga</button>
       </div>
       <div id="ai-answer" class="ai-answer-box">
         <p id="ai-answer-text"></p>
@@ -1103,10 +1089,194 @@
     <span class="suit-red">♦</span>
     <span class="suit-black">♣</span>
   </div>
-  Skitgubbe – Spelregler
+  <span data-i18n="footer.text">Skitgubbe – Spelregler</span>
 </footer>
 
 <script>
+  // ─── i18n ───────────────────────────────────────────────────────────────
+  const translations = {
+    en: {
+      'header.subtitle': 'Complete game guide',
+      'header.tagline': 'Get rid of your cards – or become the Skitgubbe 💩',
+      'header.cta': 'New? Learn in 5 minutes →',
+
+      'nav.quickguide': '⚡ Quick Guide',
+      'nav.overview': 'Overview',
+      'nav.preparation': 'Preparation',
+      'nav.gameplay': 'Gameplay',
+      'nav.special': 'Special Cards',
+      'nav.winning': 'Winning & Losing',
+      'nav.strategy': 'Strategy',
+      'nav.disputes': 'Rule Disputes',
+      'nav.askAI': 'Ask AI',
+
+      'quick.h2': 'The game in 5 minutes',
+      'quick.goal': 'Goal',
+      'quick.goal.text': 'Get rid of all your cards. Last player with cards = Skitgubbe 💩',
+      'quick.play': 'Play',
+      'quick.play.text': 'Equal or higher rank than the previous card.',
+      'quick.take': 'Take pile',
+      'quick.take.text': "Can't or won't play? Take the whole pile. Next player plays freely.",
+      'quick.two.title': 'The Two',
+      'quick.two.text': 'Can always be played – resets the pile.',
+      'quick.ten.title': 'The Ten',
+      'quick.ten.text': 'Can always be played – removes the pile, play again!',
+      'quick.four': 'Four of a kind',
+      'quick.four.text': 'Four same-rank cards on top → pile gone. Play again!',
+      'quick.more': 'Learn in more detail below ↓',
+
+      'overview.h2': 'Overview',
+      'overview.p1': 'Skitgubbe is a classic Swedish card game for <strong>2–6 players</strong>. The goal is simple: <strong>get rid of all your cards</strong>. The player left holding cards when everyone else is done loses and is called <strong>"Skitgubbe"</strong>.',
+      'overview.p2': 'Played with a <strong>standard 52-card deck</strong> (no jokers). No other equipment needed.',
+      'overview.h3rank': 'Card ranks',
+      'overview.rankdesc': 'Lowest to highest →',
+      'overview.rankfootnote': '⭐ <strong>10 and 2 are special cards.</strong>',
+      'overview.next': 'Preparation →',
+
+      'prep.h2': 'Preparation',
+      'prep.step1': 'Shuffle the deck well.',
+      'prep.step2': 'Deal <strong>3 hand cards</strong> to each player (kept secret).',
+      'prep.step3': 'Place <strong>3 open table cards</strong> face up in front of each player.',
+      'prep.step4': 'Place <strong>3 hidden table cards</strong> face down under the open ones.',
+      'prep.step5': 'Remaining cards form a <strong>draw pile</strong> in the center of the table.',
+      'prep.h3table': 'Table layout',
+      'prep.player': 'Player',
+      'prep.hand': 'HAND',
+      'prep.open': 'OPEN',
+      'prep.hidden': 'FACE DOWN',
+      'prep.drawpile': 'DRAW PILE',
+      'prep.hiddenhint': '↕ kept secret',
+      'prep.h3prepround': 'Preparation round',
+      'prep.prepround.p': 'Before play begins, each player may freely move cards. The round continues until everyone is satisfied – ask around the table.',
+      'prep.rule1': 'Freely move cards between your hand and your own open table cards.',
+      'prep.rule2': 'Place a hand card onto <strong>any opponent\'s</strong> open table cards – they then have 2+ cards there. You draw a replacement, but <strong>max 3 in hand</strong>.',
+      'prep.rule3': 'The opponent may freely manage their open table cards, e.g. pick them up into their hand.',
+      'prep.rule4': 'You can have more than 3 cards in hand if extras come from your own open table cards – but never from the draw pile.',
+      'prep.h3start': 'Who goes first?',
+      'prep.start.p': 'The player with the <strong>lowest card in hand</strong> goes first. Same rank? Compare the next lowest – and so on until someone has a lower card.',
+      'prep.next': 'Gameplay →',
+
+      'gameplay.h2': 'Gameplay',
+      'gameplay.intro': 'Players take turns <strong>clockwise</strong>. On your turn, choose one of three options:',
+      'gameplay.play.title': 'Play cards',
+      'gameplay.play.desc': 'Play one or more cards of <strong>same rank</strong>, equal to or higher than the previous.',
+      'gameplay.play.hint': 'E.g. three 7s on a 6',
+      'gameplay.take.title': 'Take the pile',
+      'gameplay.take.desc': "Can't or won't play? Pick up the whole pile. Next player <strong>plays freely</strong>.",
+      'gameplay.take.hint': 'Always allowed',
+      'gameplay.gamble.title': 'Gamble',
+      'gameplay.gamble.desc': 'Flip the top card from the draw pile. High enough → play it. Too low → take the whole pile.',
+      'gameplay.gamble.hint': 'Requires draw pile',
+      'gameplay.rule1': 'Cards removed from play (via 10 or four of a kind) <strong>never</strong> come back.',
+      'gameplay.rule2': 'If your gamble fails, you take the pile <strong>including</strong> the gambled card – even if you had playable hand cards.',
+      'gameplay.h3order': 'Card order during play',
+      'gameplay.order1': '<strong>Hand cards</strong> – always keep at least 3 (draw after each card played while the pile exists).',
+      'gameplay.order2': '<strong>Open table cards</strong> – played when hand cards are gone. Multiple same-rank cards may be played at once.',
+      'gameplay.order3': '<strong>Hidden table cards</strong> – flip one at a time without looking. Too low? Pick it up along with the whole pile.',
+      'gameplay.next': 'Special Cards →',
+
+      'special.h2': 'Special Cards',
+      'special.two.title': 'The Two',
+      'special.two.desc': 'Can be played on <strong>anything</strong>. Resets the pile – next player may play anything.',
+      'special.ten.title': 'The Ten',
+      'special.ten.desc': 'Can be played on <strong>anything</strong>. Removes the entire pile from play forever. The player <strong>plays again!</strong>',
+      'special.four.title': 'Four of a Kind',
+      'special.four.desc': 'Four same-rank cards on top → pile removed from play. The player who played the last card <strong>plays again!</strong>',
+      'special.next': 'Winning & Losing →',
+
+      'win.h2': 'Winning & Losing',
+      'win.p1': 'A player is <strong>done</strong> when they have played all hand cards, open table cards, and hidden table cards. Play continues until only one player remains.',
+      'win.p2': 'In multi-round play, the Skitgubbe usually deals the cards in the next round.',
+      'win.forbidden.title': '🚫 Forbidden last moves',
+      'win.forbidden.desc': 'You may <strong>not</strong> finish with these as your last play. Applies to hand cards and hidden table cards.',
+      'win.forbidden.consequence': '→ Must pick up the entire pile and keep playing.<br>→ If the pile is empty: skip your turn.',
+      'win.loser': 'Last player with cards = <strong>Skitgubbe</strong>',
+
+      'strategy.h2': 'Strategy & Tips',
+      'strategy.basic': 'Beginner',
+      'strategy.mid': 'Intermediate',
+      'strategy.advanced': 'Advanced',
+      'strategy.basic.1': 'Save high cards and special cards for when you really need them.',
+      'strategy.basic.2': 'Place your best cards as open table cards during the preparation round.',
+      'strategy.basic.3': 'Empty your hand quickly early on – it costs you little.',
+      'strategy.mid.1': 'Force opponents to take the pile by playing high cards when they have few in hand.',
+      'strategy.mid.2': 'Play 10s when the pile is large and cumbersome.',
+      'strategy.mid.3': 'Keep track of how many cards opponents have.',
+      'strategy.advanced.1': 'Time your 10 well – save it until the pile is large so you clear the table and play again at a critical moment.',
+      'strategy.advanced.2': 'Gamble when it pays off – chancing is strongest when the pile is large and your hand is weak. With good cards the risk is rarely worth it.',
+      'strategy.advanced.3': 'Apply pressure wisely – when a player starts on their table cards they are vulnerable. Play high cards to force them to take the pile.',
+
+      'faq.h2': 'Common Rule Disputes',
+      'faq.q1': 'Can you play a 2 on a 10?',
+      'faq.a1': 'Yes. Special cards (2 and 10) can always be played regardless of what is on top.',
+      'faq.q2': 'If I play a 10 and the pile disappears – what do I play next?',
+      'faq.a2': "You play whatever you want, since the pile is empty. It's just like starting a new round.",
+      'faq.q3': 'Does four of a kind count if played by different players in sequence?',
+      'faq.a3': 'Yes, if the four top cards on the pile are the same rank (regardless of who played them) the pile is removed.',
+      'faq.q4': 'What happens if the draw pile runs out?',
+      'faq.a4': 'Play continues but you draw no more cards. You play with whatever hand cards remain. Gambling is no longer possible.',
+      'faq.q5': 'Must you play if you can?',
+      'faq.a5': "No, you can always choose to take the pile instead. But it's rarely wise!",
+      'faq.q6': 'Can you play multiple cards of different ranks at once?',
+      'faq.a6': 'No, only multiple cards of the same rank may be played at once.',
+      'faq.q7': 'Can you gamble when you have playable hand cards?',
+      'faq.a7': 'Yes! Gambling is always an option. But if you fail you must take the whole pile – even if you had playable cards.',
+
+      'ask.h2': 'Ask a Question',
+      'ask.desc': 'Unsure about a rule? Write your question and an AI will answer based on the rules above.',
+      'ask.placeholder': 'E.g. Can you play a 2 on an ace?',
+      'ask.btn': 'Ask',
+      'ask.noAnswer': 'No answer.',
+      'ask.error': 'Could not reach the server. Please try again.',
+
+      'footer.text': 'Skitgubbe – Game Rules',
+    }
+  };
+
+  // Capture Swedish originals from DOM on first load
+  const sv = {};
+  function captureSv() {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      sv[el.dataset.i18n] = el.textContent;
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      sv[el.dataset.i18nHtml] = el.innerHTML;
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      sv[el.dataset.i18nPlaceholder] = el.placeholder;
+    });
+  }
+
+  function applyLang(lang) {
+    const t = lang === 'sv' ? sv : translations.en;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      if (t[el.dataset.i18n] !== undefined) el.textContent = t[el.dataset.i18n];
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      if (t[el.dataset.i18nHtml] !== undefined) el.innerHTML = t[el.dataset.i18nHtml];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      if (t[el.dataset.i18nPlaceholder] !== undefined) el.placeholder = t[el.dataset.i18nPlaceholder];
+    });
+    document.documentElement.lang = lang;
+    const btn = document.getElementById('lang-toggle');
+    if (btn) btn.textContent = lang === 'sv' ? '🇬🇧 EN' : '🇸🇪 SV';
+    localStorage.setItem('lang', lang);
+  }
+
+  function toggleLang() {
+    applyLang(document.documentElement.lang === 'sv' ? 'en' : 'sv');
+  }
+
+  // Init
+  document.addEventListener('DOMContentLoaded', () => {
+    captureSv();
+    const saved = localStorage.getItem('lang');
+    const preferred = saved || (navigator.language.toLowerCase().startsWith('en') ? 'en' : 'sv');
+    if (preferred !== 'sv') applyLang(preferred);
+  });
+
+  // ─── AI Q&A ─────────────────────────────────────────────────────────────
   async function askQuestion() {
     const input = document.getElementById('ai-question');
     const answerBox = document.getElementById('ai-answer');
@@ -1120,6 +1290,10 @@
     answerBox.style.display = 'none';
     answerBox.className = 'ai-answer-box';
 
+    const lang = document.documentElement.lang;
+    const noAnswer = lang === 'en' ? 'No answer.' : 'Inget svar.';
+    const errMsg = lang === 'en' ? 'Could not reach the server. Please try again.' : 'Kunde inte nå servern. Försök igen.';
+
     try {
       const res = await fetch('/ask', {
         method: 'POST',
@@ -1127,13 +1301,13 @@
         body: JSON.stringify({ question }),
       });
       const data = await res.json();
-      answerText.textContent = data.answer || data.error || 'Inget svar.';
+      answerText.textContent = data.answer || data.error || noAnswer;
     } catch {
-      answerText.textContent = 'Kunde inte nå servern. Försök igen.';
+      answerText.textContent = errMsg;
     }
 
     answerBox.style.display = 'block';
-    btn.textContent = 'Fråga';
+    btn.textContent = lang === 'en' ? 'Ask' : 'Fråga';
     btn.disabled = false;
   }
 
