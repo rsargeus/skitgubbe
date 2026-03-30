@@ -4,55 +4,52 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Skitgubbe – Spelregler</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --felt: #1a472a;
-    --felt-light: #235c38;
-    --felt-dark: #0f2d1a;
-    --gold: #c9a84c;
-    --gold-light: #e8c97a;
-    --cream: #f5f0e8;
+    --felt: #162f1e;
+    --felt-light: #1e3f28;
+    --felt-dark: #0d1f12;
+    --gold: #d4a853;
+    --gold-light: #ecc878;
+    --gold-dim: rgba(212,168,83,0.15);
+    --cream: #f2ede4;
     --card-white: #faf8f4;
     --red: #c0392b;
     --black: #1a1a1a;
-    --shadow: rgba(0,0,0,0.4);
   }
 
+  html { scroll-behavior: smooth; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
     background-color: var(--felt);
     background-image:
-      radial-gradient(ellipse at 20% 20%, var(--felt-light) 0%, transparent 60%),
-      radial-gradient(ellipse at 80% 80%, var(--felt-dark) 0%, transparent 60%),
-      repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.01) 10px, rgba(255,255,255,0.01) 11px);
-    font-family: 'Crimson Pro', Georgia, serif;
+      radial-gradient(ellipse at 15% 10%, rgba(30,63,40,0.9) 0%, transparent 55%),
+      radial-gradient(ellipse at 85% 90%, rgba(13,31,18,0.9) 0%, transparent 55%),
+      radial-gradient(ellipse at 50% 50%, rgba(22,47,30,0.5) 0%, transparent 70%),
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    font-family: 'Inter', system-ui, sans-serif;
     color: var(--cream);
     min-height: 100vh;
-    padding: 40px 20px 80px;
+    padding: 48px 0 100px;
   }
 
   /* HEADER */
   header {
     text-align: center;
-    margin-bottom: 60px;
-    position: relative;
+    margin-bottom: 48px;
+    padding: 0 24px;
   }
 
-  .header-decoration {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    margin-bottom: 16px;
-  }
+  .header-decoration { margin-bottom: 20px; }
 
   .suit-row {
     display: flex;
-    gap: 12px;
-    font-size: 2rem;
-    opacity: 0.7;
+    gap: 14px;
+    font-size: 1.8rem;
+    opacity: 0.5;
+    justify-content: center;
   }
 
   .suit-red { color: var(--red); }
@@ -60,113 +57,121 @@
 
   h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(3rem, 8vw, 6rem);
+    font-size: clamp(3.2rem, 9vw, 6.5rem);
     font-weight: 900;
     color: var(--gold);
-    text-shadow: 3px 3px 0 rgba(0,0,0,0.5), 0 0 40px rgba(201,168,76,0.3);
-    letter-spacing: -1px;
+    text-shadow: 0 2px 0 rgba(0,0,0,0.4), 0 0 60px rgba(212,168,83,0.25);
+    letter-spacing: -2px;
     line-height: 1;
   }
 
   .subtitle {
-    font-size: 1.2rem;
     color: var(--gold-light);
-    opacity: 0.8;
-    margin-top: 10px;
-    font-style: italic;
-    letter-spacing: 2px;
+    opacity: 0.65;
+    margin-top: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 3px;
     text-transform: uppercase;
-    font-size: 0.95rem;
   }
 
   .gold-line {
-    width: 200px;
-    height: 2px;
+    width: 160px;
+    height: 1px;
     background: linear-gradient(to right, transparent, var(--gold), transparent);
-    margin: 20px auto;
+    margin: 22px auto;
+    opacity: 0.6;
   }
 
   /* NAV */
   nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
-    margin-bottom: 50px;
+    gap: 8px;
+    padding: 12px 24px;
+    margin: 0 0 56px;
+    background: rgba(13, 25, 17, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(212,168,83,0.1);
   }
 
   nav a {
-    background: rgba(0,0,0,0.3);
-    border: 1px solid var(--gold);
+    background: var(--gold-dim);
+    border: 1px solid rgba(212,168,83,0.2);
     color: var(--gold-light);
-    padding: 8px 20px;
-    border-radius: 2px;
+    padding: 6px 16px;
+    border-radius: 999px;
     text-decoration: none;
-    font-size: 0.85rem;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    transition: all 0.2s;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    transition: all 0.18s;
+    white-space: nowrap;
   }
 
   nav a:hover {
     background: var(--gold);
     color: var(--felt-dark);
+    border-color: var(--gold);
   }
 
   /* LAYOUT */
   .container {
-    max-width: 900px;
+    max-width: 940px;
     margin: 0 auto;
+    padding: 0 24px;
   }
 
   /* SECTION */
   section {
-    margin-bottom: 50px;
-    scroll-margin-top: 30px;
+    margin-bottom: 60px;
+    scroll-margin-top: 68px;
   }
 
   .section-header {
     display: flex;
     align-items: center;
-    gap: 16px;
-    margin-bottom: 24px;
+    gap: 14px;
+    margin-bottom: 20px;
   }
 
   .section-icon {
-    font-size: 1.8rem;
-    width: 50px;
-    height: 50px;
-    background: rgba(0,0,0,0.3);
-    border: 1px solid var(--gold);
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    font-size: 1.6rem;
     flex-shrink: 0;
+    filter: drop-shadow(0 0 8px rgba(212,168,83,0.3));
   }
 
   h2 {
     font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
+    font-size: 1.75rem;
     color: var(--gold);
     font-weight: 700;
+    letter-spacing: -0.3px;
   }
 
   h3 {
     font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
+    font-size: 1.05rem;
     color: var(--gold-light);
-    margin: 24px 0 12px;
-    padding-bottom: 6px;
-    border-bottom: 1px solid rgba(201,168,76,0.2);
+    margin: 28px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(212,168,83,0.15);
+    letter-spacing: 0.2px;
   }
 
   /* CARD */
   .card {
-    background: rgba(0,0,0,0.25);
-    border: 1px solid rgba(201,168,76,0.25);
-    border-radius: 6px;
-    padding: 28px 32px;
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(212,168,83,0.18);
+    border-radius: 14px;
+    padding: 32px 36px;
     position: relative;
     overflow: hidden;
   }
@@ -174,21 +179,22 @@
   .card::before {
     content: '';
     position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    top: 0; left: 15%; right: 15%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(212,168,83,0.6), transparent);
   }
 
   p, li {
-    font-size: 1.05rem;
-    line-height: 1.75;
+    font-size: 1rem;
+    line-height: 1.8;
     color: var(--cream);
-    opacity: 0.92;
+    opacity: 0.88;
   }
 
   strong {
     color: var(--gold-light);
     font-weight: 600;
+    opacity: 1;
   }
 
   /* RANK DISPLAY */
@@ -198,8 +204,8 @@
     align-items: center;
     gap: 6px;
     padding: 20px;
-    background: rgba(0,0,0,0.3);
-    border-radius: 4px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
     justify-content: center;
     margin: 16px 0;
   }
@@ -209,7 +215,7 @@
     color: var(--black);
     width: 44px;
     height: 60px;
-    border-radius: 6px;
+    border-radius: 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -217,19 +223,19 @@
     font-family: 'Playfair Display', serif;
     font-weight: 700;
     font-size: 1.1rem;
-    box-shadow: 2px 4px 8px rgba(0,0,0,0.4);
-    position: relative;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.35);
     transition: transform 0.15s;
+    cursor: default;
   }
 
-  .rank-card:hover { transform: translateY(-4px); }
+  .rank-card:hover { transform: translateY(-5px); }
   .rank-card.special { background: #fff8e8; border: 2px solid var(--gold); }
-  .rank-card .card-suit { font-size: 0.65rem; opacity: 0.6; }
+  .rank-card .card-suit { font-size: 0.6rem; opacity: 0.5; }
 
   .rank-arrow {
     color: var(--gold);
-    opacity: 0.5;
-    font-size: 1rem;
+    opacity: 0.4;
+    font-size: 0.9rem;
   }
 
   /* STEPS */
@@ -249,37 +255,45 @@
   .step-num {
     background: var(--gold);
     color: var(--felt-dark);
-    width: 28px;
-    height: 28px;
+    width: 26px;
+    height: 26px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: 0.85rem;
+    font-weight: 900;
+    font-size: 0.8rem;
     flex-shrink: 0;
-    margin-top: 2px;
+    margin-top: 3px;
   }
 
-  /* SPECIAL CARDS TABLE */
+  /* SPECIAL CARDS */
   .special-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 16px;
+    gap: 14px;
     margin-top: 8px;
   }
 
   .special-card-item {
-    background: rgba(0,0,0,0.3);
-    border: 1px solid rgba(201,168,76,0.3);
-    border-radius: 6px;
-    padding: 20px;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(212,168,83,0.2);
+    border-radius: 10px;
+    padding: 24px 20px;
     text-align: center;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .special-card-item:hover {
+    border-color: rgba(212,168,83,0.4);
+    background: rgba(0,0,0,0.3);
   }
 
   .special-card-badge {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     background: var(--card-white);
     color: var(--black);
     font-family: 'Playfair Display', serif;
@@ -287,69 +301,69 @@
     font-size: 2rem;
     width: 60px;
     height: 80px;
-    border-radius: 8px;
-    line-height: 80px;
-    box-shadow: 3px 5px 12px rgba(0,0,0,0.5);
-    margin-bottom: 12px;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    margin-bottom: 14px;
   }
 
   .special-card-badge.gold-card {
-    background: linear-gradient(135deg, #fff8e8, #f5e8c0);
+    background: linear-gradient(145deg, #fffaed, #f5e8c0);
     border: 2px solid var(--gold);
-    color: #8b6914;
+    color: #7a5c10;
   }
 
   .special-card-title {
     font-family: 'Playfair Display', serif;
     color: var(--gold);
     font-size: 1rem;
+    font-weight: 700;
     margin-bottom: 8px;
   }
 
-  .special-card-item p {
-    font-size: 0.9rem;
-    opacity: 0.85;
-  }
+  .special-card-item p { font-size: 0.88rem; opacity: 0.82; line-height: 1.6; }
 
   /* RULES LIST */
   .rules-list {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
   }
 
   .rules-list li {
-    padding-left: 24px;
+    padding-left: 22px;
     position: relative;
   }
 
   .rules-list li::before {
-    content: '♦';
+    content: '◆';
     position: absolute;
     left: 0;
     color: var(--gold);
-    font-size: 0.7rem;
-    top: 6px;
+    font-size: 0.5rem;
+    top: 8px;
+    opacity: 0.7;
   }
 
   /* FORBIDDEN */
   .forbidden-box {
-    background: rgba(192, 57, 43, 0.15);
-    border: 1px solid rgba(192, 57, 43, 0.4);
-    border-radius: 6px;
+    background: rgba(192,57,43,0.1);
+    border: 1px solid rgba(192,57,43,0.3);
+    border-radius: 10px;
     padding: 20px 24px;
-    margin-top: 16px;
+    margin-top: 20px;
   }
 
   .forbidden-title {
-    color: #e74c3c;
-    font-family: 'Playfair Display', serif;
-    font-size: 1rem;
-    margin-bottom: 10px;
+    color: #e05c4e;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
     display: flex;
     align-items: center;
     gap: 8px;
+    text-transform: uppercase;
   }
 
   .forbidden-cards {
@@ -364,26 +378,29 @@
     color: var(--black);
     font-family: 'Playfair Display', serif;
     font-weight: 700;
-    padding: 4px 12px;
-    border-radius: 4px;
+    padding: 4px 14px;
+    border-radius: 6px;
     font-size: 1rem;
-    border: 2px solid #e74c3c;
+    border: 2px solid rgba(192,57,43,0.6);
   }
 
   /* QUICK GUIDE */
   .quick-guide {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 10px;
   }
 
   .quick-item {
-    background: rgba(0,0,0,0.3);
-    border: 1px solid rgba(201,168,76,0.2);
-    border-radius: 6px;
-    padding: 16px 12px;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(212,168,83,0.15);
+    border-radius: 10px;
+    padding: 18px 12px;
     text-align: center;
+    transition: border-color 0.2s;
   }
+
+  .quick-item:hover { border-color: rgba(212,168,83,0.35); }
 
   .quick-num {
     font-family: 'Playfair Display', serif;
@@ -391,36 +408,36 @@
     font-weight: 900;
     color: var(--gold);
     display: block;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
+    line-height: 1;
   }
 
-  .quick-item p {
-    font-size: 0.88rem;
-    opacity: 0.85;
-    line-height: 1.4;
-  }
+  .quick-item p { font-size: 0.84rem; opacity: 0.8; line-height: 1.4; }
 
   /* STRATEGY */
   .strategy-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 16px;
+    gap: 14px;
   }
 
   .strategy-card {
-    background: rgba(0,0,0,0.25);
-    border: 1px solid rgba(201,168,76,0.2);
-    border-radius: 6px;
-    padding: 20px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(212,168,83,0.15);
+    border-radius: 10px;
+    padding: 22px;
+    transition: border-color 0.2s;
   }
 
+  .strategy-card:hover { border-color: rgba(212,168,83,0.3); }
+
   .strategy-level {
-    font-family: 'Playfair Display', serif;
+    font-size: 0.72rem;
+    font-weight: 600;
     color: var(--gold);
-    font-size: 0.8rem;
     letter-spacing: 2px;
     text-transform: uppercase;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -428,10 +445,11 @@
 
   .level-pip {
     display: inline-block;
-    width: 8px;
-    height: 8px;
+    width: 7px;
+    height: 7px;
     background: var(--gold);
     border-radius: 50%;
+    opacity: 0.8;
   }
 
   .strategy-card ul {
@@ -442,10 +460,11 @@
   }
 
   .strategy-card ul li {
-    font-size: 0.92rem;
-    padding-left: 16px;
+    font-size: 0.9rem;
+    padding-left: 18px;
     position: relative;
-    opacity: 0.9;
+    opacity: 0.85;
+    line-height: 1.5;
   }
 
   .strategy-card ul li::before {
@@ -453,52 +472,56 @@
     position: absolute;
     left: 0;
     color: var(--gold);
-    opacity: 0.6;
+    opacity: 0.5;
   }
 
   /* FAQ */
   .faq-list {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 10px;
   }
 
   .faq-item {
-    background: rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.15);
+    border: 1px solid rgba(212,168,83,0.15);
     border-left: 3px solid var(--gold);
-    border-radius: 0 6px 6px 0;
+    border-radius: 0 10px 10px 0;
     overflow: hidden;
+    transition: background 0.2s;
   }
+
+  .faq-item:hover { background: rgba(0,0,0,0.22); }
 
   .faq-q {
     padding: 14px 20px;
-    font-weight: 600;
+    font-weight: 500;
+    font-size: 0.95rem;
     color: var(--gold-light);
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 1rem;
+    gap: 12px;
     user-select: none;
   }
-
-  .faq-q:hover { background: rgba(201,168,76,0.08); }
 
   .faq-toggle {
     color: var(--gold);
     font-size: 1.2rem;
     transition: transform 0.25s;
     flex-shrink: 0;
+    opacity: 0.7;
   }
 
   .faq-a {
     padding: 0 20px;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease, padding 0.3s ease;
+    transition: max-height 0.35s ease, padding 0.35s ease;
   }
 
-  .faq-a p { font-size: 0.95rem; padding-bottom: 14px; }
+  .faq-a p { font-size: 0.92rem; padding-bottom: 16px; opacity: 0.8; }
 
   .faq-item.open .faq-a { max-height: 200px; }
   .faq-item.open .faq-toggle { transform: rotate(45deg); }
@@ -506,14 +529,14 @@
   /* LOSER BOX */
   .loser-box {
     text-align: center;
-    padding: 30px;
-    background: rgba(0,0,0,0.3);
-    border: 1px solid rgba(201,168,76,0.2);
-    border-radius: 6px;
-    margin-top: 16px;
+    padding: 32px;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(212,168,83,0.15);
+    border-radius: 10px;
+    margin-top: 20px;
   }
 
-  .loser-emoji { font-size: 3rem; display: block; margin-bottom: 10px; }
+  .loser-emoji { font-size: 3rem; display: block; margin-bottom: 12px; }
 
   .loser-box p {
     font-family: 'Playfair Display', serif;
@@ -521,36 +544,154 @@
     color: var(--gold);
   }
 
+  /* AI SECTION */
+  .ai-input-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+
+  .ai-input {
+    flex: 1;
+    min-width: 200px;
+    background: rgba(0,0,0,0.25);
+    border: 1px solid rgba(212,168,83,0.3);
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: var(--cream);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .ai-input:focus { border-color: rgba(212,168,83,0.7); }
+  .ai-input::placeholder { opacity: 0.4; }
+
+  .ai-btn {
+    background: var(--gold);
+    color: var(--felt-dark);
+    border: none;
+    border-radius: 8px;
+    padding: 12px 26px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: background 0.2s, transform 0.1s;
+    white-space: nowrap;
+  }
+
+  .ai-btn:hover { background: var(--gold-light); }
+  .ai-btn:active { transform: scale(0.98); }
+  .ai-btn:disabled { opacity: 0.6; cursor: default; }
+
+  .ai-answer-box {
+    display: none;
+    margin-top: 18px;
+    padding: 16px 20px;
+    background: rgba(0,0,0,0.2);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+  }
+
+  .ai-answer-box p { line-height: 1.75; font-size: 0.97rem; }
+
   /* FOOTER */
   footer {
     text-align: center;
-    margin-top: 60px;
-    opacity: 0.4;
-    font-size: 0.85rem;
-    font-style: italic;
+    margin-top: 80px;
+    opacity: 0.3;
+    font-size: 0.82rem;
+    letter-spacing: 0.5px;
   }
 
   /* ANIMATIONS */
   @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
+    from { opacity: 0; transform: translateY(16px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
-  section {
-    animation: fadeInUp 0.5s ease both;
+  section { animation: fadeInUp 0.45s ease both; }
+  section:nth-child(1) { animation-delay: 0.04s; }
+  section:nth-child(2) { animation-delay: 0.08s; }
+  section:nth-child(3) { animation-delay: 0.12s; }
+  section:nth-child(4) { animation-delay: 0.16s; }
+  section:nth-child(5) { animation-delay: 0.20s; }
+  section:nth-child(6) { animation-delay: 0.24s; }
+  section:nth-child(7) { animation-delay: 0.28s; }
+  section:nth-child(8) { animation-delay: 0.32s; }
+
+  @media (max-width: 640px) {
+    body {
+      padding: 24px 0 80px;
+    }
+
+    header {
+      padding: 0 20px;
+    }
+
+    /* NAV: horisontell scroll istället för radbrytning */
+    nav {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      justify-content: flex-start;
+      margin: 0 0 40px;
+      padding: 10px 20px;
+      gap: 7px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    nav::-webkit-scrollbar { display: none; }
+    nav a {
+      flex-shrink: 0;
+      padding: 8px 16px; /* Större touch-yta */
+      font-size: 0.8rem;
+    }
+
+    .container { padding: 0 16px; }
+
+    h1 { font-size: clamp(2.6rem, 12vw, 4rem); letter-spacing: -1px; }
+    h2 { font-size: 1.35rem; }
+
+    .card { padding: 20px 18px; border-radius: 10px; }
+
+    section { scroll-margin-top: 60px; margin-bottom: 44px; }
+
+    /* Rang-display: horisontell scroll */
+    .rank-display {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      justify-content: flex-start;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      padding: 16px;
+      border-radius: 8px;
+    }
+    .rank-display::-webkit-scrollbar { display: none; }
+    .rank-card { flex-shrink: 0; width: 36px; height: 50px; font-size: 0.88rem; }
+    .rank-arrow { flex-shrink: 0; }
+
+    /* Specialkort: 1 kolumn */
+    .special-cards { grid-template-columns: 1fr; }
+
+    /* Strategi: 1 kolumn */
+    .strategy-grid { grid-template-columns: 1fr; }
+
+    /* FAQ: lång text */
+    .faq-q { font-size: 0.9rem; }
+
+    /* Fanned cards (Fyra lika) - minska lite */
+    .section-icon { font-size: 1.4rem; }
   }
 
-  section:nth-child(1) { animation-delay: 0.05s; }
-  section:nth-child(2) { animation-delay: 0.1s; }
-  section:nth-child(3) { animation-delay: 0.15s; }
-  section:nth-child(4) { animation-delay: 0.2s; }
-  section:nth-child(5) { animation-delay: 0.25s; }
-  section:nth-child(6) { animation-delay: 0.3s; }
-
-  @media (max-width: 600px) {
-    .card { padding: 20px 18px; }
-    h2 { font-size: 1.5rem; }
-    .rank-card { width: 36px; height: 50px; font-size: 0.9rem; }
+  /* Reducerade animationer för tillgänglighet och prestanda */
+  @media (prefers-reduced-motion: reduce) {
+    section { animation: none; }
+    .rank-card { transition: none; }
+    nav a { transition: none; }
   }
 </style>
 </head>
@@ -569,21 +710,76 @@
   <p class="subtitle">Komplett spelguide</p>
   <div class="gold-line"></div>
   <p style="opacity:0.6; font-style:italic; font-size:0.95rem;">Bli av med dina kort – eller bli Skitgubbe 💩</p>
+  <a href="#snabbguide" style="
+    display:inline-block; margin-top:24px;
+    background:var(--gold); color:var(--felt-dark);
+    font-family:'Playfair Display',serif; font-weight:700;
+    font-size:0.95rem; letter-spacing:0.5px;
+    padding:12px 32px; border-radius:999px;
+    text-decoration:none;
+    box-shadow:0 4px 20px rgba(212,168,83,0.35);
+    transition:all 0.2s;
+  " onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">Ny? Lär dig på 5 minuter →</a>
 </header>
 
 <nav>
+  <a href="#snabbguide">⚡ Snabbguide</a>
   <a href="#oversikt">Översikt</a>
   <a href="#forberedelser">Förberedelser</a>
   <a href="#spelgang">Spelgång</a>
   <a href="#specialkort">Specialkort</a>
   <a href="#vinna">Vinna & förlora</a>
-  <a href="#snabbguide">Snabbguide</a>
   <a href="#strategi">Strategi</a>
   <a href="#faq">Regeltvister</a>
   <a href="#fraga">Fråga AI</a>
 </nav>
 
 <div class="container">
+
+  <!-- SNABBGUIDE (first for learners) -->
+  <section id="snabbguide">
+    <div class="section-header">
+      <div class="section-icon">⚡</div>
+      <h2>Spelet på 5 minuter</h2>
+    </div>
+    <div class="card">
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:0; border-radius:10px; overflow:hidden; border:1px solid rgba(212,168,83,0.15);">
+        <div style="padding:20px 22px; border-right:1px solid rgba(212,168,83,0.1); border-bottom:1px solid rgba(212,168,83,0.1);">
+          <div style="font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--gold); font-weight:900; margin-bottom:6px;">Målet</div>
+          <p style="font-size:0.9rem; opacity:0.8; line-height:1.5;">Bli av med alla dina kort. Sist kvar med kort = Skitgubbe 💩</p>
+        </div>
+        <div style="padding:20px 22px; border-right:1px solid rgba(212,168,83,0.1); border-bottom:1px solid rgba(212,168,83,0.1);">
+          <div style="font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--gold); font-weight:900; margin-bottom:6px;">Lägg</div>
+          <p style="font-size:0.9rem; opacity:0.8; line-height:1.5;">Lika högt eller högre valör än föregående.</p>
+        </div>
+        <div style="padding:20px 22px; border-bottom:1px solid rgba(212,168,83,0.1);">
+          <div style="font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--gold); font-weight:900; margin-bottom:6px;">Ta högen</div>
+          <p style="font-size:0.9rem; opacity:0.8; line-height:1.5;">Kan du inte lägga? Ta hela högen. Nästa spelar fritt.</p>
+        </div>
+        <div style="padding:20px 22px; border-right:1px solid rgba(212,168,83,0.1);">
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
+            <div style="background:var(--card-white); color:var(--black); font-family:'Playfair Display',serif; font-weight:900; font-size:1rem; width:32px; height:42px; border-radius:5px; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(0,0,0,0.3);">2</div>
+            <div style="font-family:'Playfair Display',serif; font-size:1rem; color:var(--gold); font-weight:700;">Tvåan</div>
+          </div>
+          <p style="font-size:0.9rem; opacity:0.8; line-height:1.5;">Kan läggas på vad som helst. Nollställer högen.</p>
+        </div>
+        <div style="padding:20px 22px; border-right:1px solid rgba(212,168,83,0.1);">
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
+            <div style="background:linear-gradient(145deg,#fffaed,#f5e8c0); border:2px solid var(--gold); color:#7a5c10; font-family:'Playfair Display',serif; font-weight:900; font-size:1rem; width:32px; height:42px; border-radius:5px; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(0,0,0,0.3);">10</div>
+            <div style="font-family:'Playfair Display',serif; font-size:1rem; color:var(--gold); font-weight:700;">Tian</div>
+          </div>
+          <p style="font-size:0.9rem; opacity:0.8; line-height:1.5;">Kan läggas på vad som helst. Tar bort högen. Spela igen!</p>
+        </div>
+        <div style="padding:20px 22px;">
+          <div style="font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--gold); font-weight:900; margin-bottom:6px;">Fyra lika</div>
+          <p style="font-size:0.9rem; opacity:0.8; line-height:1.5;">Fyra kort av samma valör överst → högen bort. Spela igen!</p>
+        </div>
+      </div>
+      <div style="margin-top:20px; text-align:right;">
+        <a href="#forberedelser" style="color:var(--gold); font-size:0.88rem; font-weight:500; text-decoration:none; opacity:0.8;">Lär dig mer detaljerat nedan ↓</a>
+      </div>
+    </div>
+  </section>
 
   <!-- ÖVERSIKT -->
   <section id="oversikt">
@@ -626,6 +822,7 @@
       </div>
       <p style="font-size:0.9rem; opacity:0.7; margin-top:10px;">⭐ <strong>10 är högst</strong>, <strong>2 är näst högst</strong>. Båda är specialkort.</p>
     </div>
+    <div style="text-align:right; margin-top:14px;"><a href="#forberedelser" style="color:var(--gold); font-size:0.88rem; font-weight:500; text-decoration:none; opacity:0.7;">Förberedelser →</a></div>
   </section>
 
   <!-- FÖRBEREDELSER -->
@@ -643,6 +840,44 @@
         <li class="step"><span class="step-num">5</span><span>Resterande kort läggs i en <strong>dragstapel</strong> mitt på bordet.</span></li>
       </ol>
 
+      <h3>Hur bordet ser ut</h3>
+      <div style="background:rgba(0,0,0,0.25); border-radius:12px; padding:24px 16px; margin:16px 0; text-align:center;">
+        <div style="font-size:0.72rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; opacity:0.5; margin-bottom:12px;">Spelare</div>
+        <div style="display:flex; justify-content:center; gap:6px; margin-bottom:6px;">
+          <div style="background:var(--card-white); color:var(--black); width:36px; height:50px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.65rem; font-weight:600; color:#555; box-shadow:0 2px 6px rgba(0,0,0,0.3);">HAND</div>
+          <div style="background:var(--card-white); color:var(--black); width:36px; height:50px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.65rem; font-weight:600; color:#555; box-shadow:0 2px 6px rgba(0,0,0,0.3);">HAND</div>
+          <div style="background:var(--card-white); color:var(--black); width:36px; height:50px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.65rem; font-weight:600; color:#555; box-shadow:0 2px 6px rgba(0,0,0,0.3);">HAND</div>
+        </div>
+        <div style="font-size:0.65rem; opacity:0.45; margin-bottom:8px;">↕ hålls dolda</div>
+        <div style="display:flex; justify-content:center; gap:6px; margin-bottom:4px;">
+          <div style="background:linear-gradient(145deg,#fffaed,#f5e8c0); border:1px solid var(--gold); width:36px; height:50px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.6rem; font-weight:600; color:#7a5c10; box-shadow:0 2px 6px rgba(0,0,0,0.3);">ÖPPEN</div>
+          <div style="background:linear-gradient(145deg,#fffaed,#f5e8c0); border:1px solid var(--gold); width:36px; height:50px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.6rem; font-weight:600; color:#7a5c10; box-shadow:0 2px 6px rgba(0,0,0,0.3);">ÖPPEN</div>
+          <div style="background:linear-gradient(145deg,#fffaed,#f5e8c0); border:1px solid var(--gold); width:36px; height:50px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.6rem; font-weight:600; color:#7a5c10; box-shadow:0 2px 6px rgba(0,0,0,0.3);">ÖPPEN</div>
+        </div>
+        <div style="display:flex; justify-content:center; gap:6px; margin-bottom:20px;">
+          <div style="background:rgba(212,168,83,0.2); border:1px solid rgba(212,168,83,0.3); width:36px; height:50px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.6rem; font-weight:600; color:var(--gold-light);">DOLD</div>
+          <div style="background:rgba(212,168,83,0.2); border:1px solid rgba(212,168,83,0.3); width:36px; height:50px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.6rem; font-weight:600; color:var(--gold-light);">DOLD</div>
+          <div style="background:rgba(212,168,83,0.2); border:1px solid rgba(212,168,83,0.3); width:36px; height:50px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.6rem; font-weight:600; color:var(--gold-light);">DOLD</div>
+        </div>
+        <div style="background:rgba(212,168,83,0.15); border:1px solid rgba(212,168,83,0.25); border-radius:8px; padding:10px 16px; display:inline-block; font-size:0.8rem; font-weight:600; color:var(--gold-light); margin-bottom:20px;">DRAGSTAPEL</div>
+        <div style="display:flex; justify-content:center; gap:6px; margin-bottom:4px;">
+          <div style="background:rgba(212,168,83,0.2); border:1px solid rgba(212,168,83,0.3); width:36px; height:50px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.6rem; font-weight:600; color:var(--gold-light);">DOLD</div>
+          <div style="background:rgba(212,168,83,0.2); border:1px solid rgba(212,168,83,0.3); width:36px; height:50px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.6rem; font-weight:600; color:var(--gold-light);">DOLD</div>
+          <div style="background:rgba(212,168,83,0.2); border:1px solid rgba(212,168,83,0.3); width:36px; height:50px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.6rem; font-weight:600; color:var(--gold-light);">DOLD</div>
+        </div>
+        <div style="display:flex; justify-content:center; gap:6px; margin-bottom:6px;">
+          <div style="background:linear-gradient(145deg,#fffaed,#f5e8c0); border:1px solid var(--gold); width:36px; height:50px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.6rem; font-weight:600; color:#7a5c10; box-shadow:0 2px 6px rgba(0,0,0,0.3);">ÖPPEN</div>
+          <div style="background:linear-gradient(145deg,#fffaed,#f5e8c0); border:1px solid var(--gold); width:36px; height:50px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.6rem; font-weight:600; color:#7a5c10; box-shadow:0 2px 6px rgba(0,0,0,0.3);">ÖPPEN</div>
+          <div style="background:linear-gradient(145deg,#fffaed,#f5e8c0); border:1px solid var(--gold); width:36px; height:50px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.6rem; font-weight:600; color:#7a5c10; box-shadow:0 2px 6px rgba(0,0,0,0.3);">ÖPPEN</div>
+        </div>
+        <div style="display:flex; justify-content:center; gap:6px; margin-bottom:6px;">
+          <div style="background:var(--card-white); width:36px; height:50px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.65rem; font-weight:600; color:#555; box-shadow:0 2px 6px rgba(0,0,0,0.3);">HAND</div>
+          <div style="background:var(--card-white); width:36px; height:50px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.65rem; font-weight:600; color:#555; box-shadow:0 2px 6px rgba(0,0,0,0.3);">HAND</div>
+          <div style="background:var(--card-white); width:36px; height:50px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.65rem; font-weight:600; color:#555; box-shadow:0 2px 6px rgba(0,0,0,0.3);">HAND</div>
+        </div>
+        <div style="font-size:0.72rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; opacity:0.5; margin-top:8px;">Spelare</div>
+      </div>
+
       <h3>Förberedelserundan</h3>
       <p>Innan spelet börjar får varje spelare fritt flytta kort. Rundan pågår tills alla är nöjda – man frågar runt bordet.</p>
       <ul class="rules-list" style="margin-top: 14px;">
@@ -655,6 +890,7 @@
       <h3>Vem börjar?</h3>
       <p>Den spelare med <strong>lägsta kortet på hand</strong> börjar. Lika valör? Jämför näst lägsta – och så vidare tills någon har ett lägre kort.</p>
     </div>
+    <div style="text-align:right; margin-top:14px;"><a href="#spelgang" style="color:var(--gold); font-size:0.88rem; font-weight:500; text-decoration:none; opacity:0.7;">Spelgång →</a></div>
   </section>
 
   <!-- SPELGÅNG -->
@@ -664,21 +900,32 @@
       <h2>Spelgång</h2>
     </div>
     <div class="card">
-      <p>Spelarna turas om <strong>medsols</strong>. På sin tur väljer man ett av tre alternativ:</p>
+      <p>Spelarna turas om <strong>medsols</strong>. På din tur väljer du ett av tre alternativ:</p>
 
-      <h3>1. Lägg kort</h3>
-      <p>Lägg ett eller flera kort av <strong>samma valör</strong>, lika högt eller högre än det senast spelade (t.ex. tre 7:or på en 6:a).</p>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:20px 0;">
+        <div style="background:rgba(0,0,0,0.2); border:1px solid rgba(212,168,83,0.2); border-top:3px solid var(--gold); border-radius:0 0 10px 10px; padding:20px;">
+          <div style="font-size:1.6rem; margin-bottom:8px;">↑</div>
+          <div style="font-family:'Playfair Display',serif; color:var(--gold); font-size:1rem; font-weight:700; margin-bottom:8px;">Lägg kort</div>
+          <p style="font-size:0.88rem; opacity:0.8; line-height:1.55;">Lägg ett eller flera kort av <strong>samma valör</strong>, lika högt eller högre än föregående.</p>
+          <p style="font-size:0.8rem; opacity:0.5; margin-top:8px; font-style:italic;">T.ex. tre 7:or på en 6:a</p>
+        </div>
+        <div style="background:rgba(0,0,0,0.2); border:1px solid rgba(212,168,83,0.2); border-top:3px solid rgba(192,57,43,0.7); border-radius:0 0 10px 10px; padding:20px;">
+          <div style="font-size:1.6rem; margin-bottom:8px;">↓</div>
+          <div style="font-family:'Playfair Display',serif; color:var(--gold); font-size:1rem; font-weight:700; margin-bottom:8px;">Ta högen</div>
+          <p style="font-size:0.88rem; opacity:0.8; line-height:1.55;">Kan du inte eller vill inte lägga? Ta upp hela högen. Nästa spelare <strong>spelar fritt</strong>.</p>
+          <p style="font-size:0.8rem; opacity:0.5; margin-top:8px; font-style:italic;">Alltid tillåtet</p>
+        </div>
+        <div style="background:rgba(0,0,0,0.2); border:1px solid rgba(212,168,83,0.2); border-top:3px solid rgba(212,168,83,0.5); border-radius:0 0 10px 10px; padding:20px;">
+          <div style="font-size:1.6rem; margin-bottom:8px;">🎲</div>
+          <div style="font-family:'Playfair Display',serif; color:var(--gold); font-size:1rem; font-weight:700; margin-bottom:8px;">Chansa</div>
+          <p style="font-size:0.88rem; opacity:0.8; line-height:1.55;">Vänd upp översta kortet från stapeln. Tillräckligt högt → lägg det. För lågt → ta hela högen.</p>
+          <p style="font-size:0.8rem; opacity:0.5; margin-top:8px; font-style:italic;">Kräver dragstapel kvar</p>
+        </div>
+      </div>
 
-      <h3>2. Ta hela högen</h3>
-      <p>Om du inte kan eller vill lägga tar du upp hela högen till din hand. <strong>Nästa spelare får då lägga vad den vill</strong>, eftersom högen är tom.</p>
-
-      <h3>3. Chansa 🎲</h3>
-      <p>Istället för att ta högen kan du chansa <strong>en gång per tur</strong> – vänd upp översta kortet på högen och visa det för alla.</p>
-      <ul class="rules-list" style="margin-top:10px;">
-        <li>Är kortet tillräckligt högt? Lägg det och fortsätt!</li>
-        <li>Är det för lågt? Ta hela högen <strong>inklusive</strong> det chansade – även om du hade handkort som gått att lägga.</li>
-        <li>Chansning är bara möjligt medan <strong>dragstapeln finns kvar</strong>.</li>
+      <ul class="rules-list" style="margin-top:4px;">
         <li>Kort ur spel (via 10 eller fyra lika) kommer <strong>aldrig</strong> tillbaka.</li>
+        <li>Misslyckas du med chansen tar du högen <strong>inklusive</strong> det chansade kortet – även om du hade handkort som gick att lägga.</li>
       </ul>
 
       <h3>Kortens ordning under spelet</h3>
@@ -688,6 +935,7 @@
         <li class="step"><span class="step-num">3</span><span><strong>Dolda bordskort</strong> – vänd upp ett i taget utan att titta. För lågt? Ta upp det plus hela högen.</span></li>
       </ol>
     </div>
+    <div style="text-align:right; margin-top:14px;"><a href="#specialkort" style="color:var(--gold); font-size:0.88rem; font-weight:500; text-decoration:none; opacity:0.7;">Specialkort →</a></div>
   </section>
 
   <!-- SPECIALKORT -->
@@ -722,6 +970,7 @@
         </div>
       </div>
     </div>
+    <div style="text-align:right; margin-top:14px;"><a href="#vinna" style="color:var(--gold); font-size:0.88rem; font-weight:500; text-decoration:none; opacity:0.7;">Vinna & förlora →</a></div>
   </section>
 
   <!-- VINNA & FÖRLORA -->
@@ -749,42 +998,6 @@
       <div class="loser-box">
         <span class="loser-emoji">💩</span>
         <p>Sist kvar med kort = <strong>Skitgubbe</strong></p>
-      </div>
-    </div>
-  </section>
-
-  <!-- SNABBGUIDE -->
-  <section id="snabbguide">
-    <div class="section-header">
-      <div class="section-icon">⚡</div>
-      <h2>Snabbguide för nybörjare</h2>
-    </div>
-    <div class="card">
-      <div class="quick-guide">
-        <div class="quick-item">
-          <span class="quick-num">1</span>
-          <p>Bli av med alla dina kort</p>
-        </div>
-        <div class="quick-item">
-          <span class="quick-num">2</span>
-          <p>Lägg lika högt eller högre än föregående</p>
-        </div>
-        <div class="quick-item">
-          <span class="quick-num">3</span>
-          <p>Kan du inte? Ta hela högen</p>
-        </div>
-        <div class="quick-item">
-          <span class="quick-num" style="font-size:1.4rem;">2</span>
-          <p>Kan läggas alltid – nollställer högen</p>
-        </div>
-        <div class="quick-item">
-          <span class="quick-num" style="font-size:1.4rem;">10</span>
-          <p>Kan läggas alltid – tar bort högen, spela igen</p>
-        </div>
-        <div class="quick-item">
-          <span class="quick-num">💩</span>
-          <p>Sist kvar med kort = Skitgubbe</p>
-        </div>
       </div>
     </div>
   </section>
@@ -870,37 +1083,13 @@
       <h2>Ställ en fråga</h2>
     </div>
     <div class="card">
-      <p style="margin-bottom:20px; opacity:0.8;">Osäker på en regel? Skriv din fråga så svarar en AI baserat på spelreglerna ovan.</p>
-      <div style="display:flex; gap:10px; flex-wrap:wrap;">
-        <input id="ai-question" type="text" placeholder="T.ex. Kan man lägga ett 2 på ett ess?" style="
-          flex:1; min-width:200px;
-          background: rgba(0,0,0,0.3);
-          border: 1px solid rgba(201,168,76,0.4);
-          border-radius: 4px;
-          padding: 12px 16px;
-          color: var(--cream);
-          font-family: 'Crimson Pro', Georgia, serif;
-          font-size: 1rem;
-          outline: none;
-        ">
-        <button id="ai-submit" onclick="askQuestion()" style="
-          background: var(--gold);
-          color: var(--felt-dark);
-          border: none;
-          border-radius: 4px;
-          padding: 12px 24px;
-          font-family: 'Playfair Display', serif;
-          font-weight: 700;
-          font-size: 0.9rem;
-          cursor: pointer;
-          letter-spacing: 1px;
-          text-transform: uppercase;
-          transition: background 0.2s;
-          white-space: nowrap;
-        ">Fråga</button>
+      <p style="opacity:0.7; font-size:0.95rem;">Osäker på en regel? Skriv din fråga så svarar en AI baserat på spelreglerna ovan.</p>
+      <div class="ai-input-row">
+        <input id="ai-question" type="text" class="ai-input" placeholder="T.ex. Kan man lägga ett 2 på ett ess?">
+        <button id="ai-submit" class="ai-btn" onclick="askQuestion()">Fråga</button>
       </div>
-      <div id="ai-answer" style="display:none; margin-top:20px; padding:16px 20px; background:rgba(0,0,0,0.2); border-left:3px solid var(--gold); border-radius:0 4px 4px 0;">
-        <p id="ai-answer-text" style="line-height:1.7;"></p>
+      <div id="ai-answer" class="ai-answer-box">
+        <p id="ai-answer-text"></p>
       </div>
     </div>
   </section>
@@ -929,6 +1118,7 @@
     btn.textContent = '...';
     btn.disabled = true;
     answerBox.style.display = 'none';
+    answerBox.className = 'ai-answer-box';
 
     try {
       const res = await fetch('/ask', {
