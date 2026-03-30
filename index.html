@@ -1272,7 +1272,7 @@
   document.addEventListener('DOMContentLoaded', () => {
     captureSv();
     const saved = localStorage.getItem('lang');
-    const preferred = saved || (navigator.language.toLowerCase().startsWith('en') ? 'en' : 'sv');
+    const preferred = saved || 'sv';
     if (preferred !== 'sv') applyLang(preferred);
   });
 
