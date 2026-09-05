@@ -70,7 +70,7 @@ export async function onRequestPost(context) {
       });
     }
 
-    const response = await env.AI.run('@cf/meta/llama-3.1-8b-instruct', {
+    const response = await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
       messages: [
         {
           role: 'system',
@@ -85,6 +85,7 @@ export async function onRequestPost(context) {
       headers: { 'Content-Type': 'application/json' },
     });
   } catch (err) {
+    console.error('ask.js failed:', err);
     return new Response(JSON.stringify({ error: 'Något gick fel. Försök igen.' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },

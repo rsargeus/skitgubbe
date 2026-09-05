@@ -11,7 +11,7 @@ Live at: [skitgubbe.nu](https://skitgubbe.nu)
 - **Learning-first structure** — the page opens with a quick 5-minute overview before going into detailed rules
 - **Visual card components** — realistic playing cards with suits and rank, fanned four-of-a-kind display, and an interactive rank order display
 - **Visual table diagram** — shows players how cards are physically laid out before the game starts
-- **AI Q&A** — visitors can ask questions about the rules in natural language and receive answers powered by Cloudflare Workers AI (Llama 3.1 8B)
+- **AI Q&A** — visitors can ask questions about the rules in natural language and receive answers powered by Cloudflare Workers AI (Llama 3.3 70B)
 - **Sticky navigation** with horizontal scroll on mobile
 - **Responsive design** — optimized for both desktop and mobile
 
@@ -22,7 +22,7 @@ Live at: [skitgubbe.nu](https://skitgubbe.nu)
 | Layer | Technology |
 |---|---|
 | Hosting | Cloudflare Pages |
-| AI | Cloudflare Workers AI (`@cf/meta/llama-3.1-8b-instruct`) |
+| AI | Cloudflare Workers AI (`@cf/meta/llama-3.3-70b-instruct-fp8-fast`) |
 | DNS | Cloudflare (nameservers), domain registered at Loopia |
 | Frontend | Single-file HTML + CSS + vanilla JS — no framework, no build step |
 | Fonts | Google Fonts — Playfair Display (headings), Inter (body) |
