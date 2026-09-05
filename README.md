@@ -2,7 +2,7 @@
 
 An interactive rules reference for **Skitgubbe**, a classic Swedish card game. The site is designed as a learning experience for new players, not just a static reference document.
 
-Live at: [skitgubbe.nu](https://skitgubbe.nu)
+Live at: [skitgubbe.nu](https://skitgubbe.nu) — and the game at [spel.skitgubbe.nu](https://spel.skitgubbe.nu)
 
 ---
 
@@ -12,6 +12,7 @@ Live at: [skitgubbe.nu](https://skitgubbe.nu)
 - **Visual card components** — realistic playing cards with suits and rank, fanned four-of-a-kind display, and an interactive rank order display
 - **Visual table diagram** — shows players how cards are physically laid out before the game starts
 - **AI Q&A** — visitors can ask questions about the rules in natural language and receive answers powered by Cloudflare Workers AI (Llama 3.3 70B)
+- **Playable game** — singleplayer against 1–3 bots across five difficulty levels, in `game/`
 - **Sticky navigation** with horizontal scroll on mobile
 - **Responsive design** — optimized for both desktop and mobile
 
@@ -21,7 +22,8 @@ Live at: [skitgubbe.nu](https://skitgubbe.nu)
 
 | Layer | Technology |
 |---|---|
-| Hosting | Cloudflare Pages |
+| Hosting | Cloudflare Pages — two projects: the rules page (no build) and the game (`game/`) |
+| Game | TypeScript + Vite + React, tested with Vitest |
 | AI | Cloudflare Workers AI (`@cf/meta/llama-3.3-70b-instruct-fp8-fast`) |
 | DNS | Cloudflare (nameservers), domain registered at Loopia |
 | Frontend | Single-file HTML + CSS + vanilla JS — no framework, no build step |
@@ -34,9 +36,37 @@ Live at: [skitgubbe.nu](https://skitgubbe.nu)
 
 ```
 skitgubbe/
-├── index.html          # Entire site — markup, styles and scripts
-└── functions/
-    └── ask.js          # Cloudflare Pages Function — handles AI Q&A requests
+├── index.html          # Rules page — markup, styles and scripts in one file
+├── CONTEXT.md          # Domain glossary: the Swedish game terms, defined
+├── docs/
+│   ├── adr/            # Architecture decision records
+│   └── agents/         # Issue tracker, triage labels and domain doc conventions
+├── functions/
+│   └── ask.js          # Cloudflare Pages Function — handles AI Q&A requests
+├── game/               # The playable game (own package, own Pages project)
+│   └── src/
+│       ├── engine/     # Rules engine: pure data and functions, no DOM
+│       ├── bots/       # One bot, five difficulty levels
+│       ├── ui/         # React components
+│       └── i18n/       # Every user-facing string, Swedish and English
+└── scripts/
+    └── setup-game-pages.sh   # Wizard for the game's Cloudflare Pages project
+```
+
+### `game/`
+
+The rules engine is plain data and functions with no React and no DOM, so it can
+be tested on its own — and it is, thoroughly, because Skitgubbe's rules interact
+in ways that are easy to get subtly wrong. Bots never see the game state: they
+receive a `PlayerView` that physically omits hidden cards, so a bot cannot cheat
+even by accident. See [`docs/adr/`](./docs/adr/).
+
+```bash
+cd game
+npm install
+npm run dev      # local dev server
+npm test         # Vitest
+npm run build    # type-check and build to game/dist
 ```
 
 ### `index.html`

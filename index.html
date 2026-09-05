@@ -120,6 +120,13 @@
     border-color: var(--gold);
   }
 
+  nav a.nav-play {
+    background: var(--gold);
+    color: var(--felt-dark);
+    border-color: var(--gold);
+    font-weight: 700;
+  }
+
   /* LAYOUT */
   .container {
     max-width: 940px;
@@ -748,6 +755,7 @@
   <a href="#strategi" data-i18n="nav.strategy">Strategi</a>
   <a href="#faq" data-i18n="nav.disputes">Regeltvister</a>
   <a href="#fraga" data-i18n="nav.askAI">Fråga AI</a>
+  <a href="https://spel.skitgubbe.nu" class="nav-play" data-i18n="nav.play">🎮 Spela</a>
 </nav>
 <button class="lang-toggle" id="lang-toggle" onclick="toggleLang()">🇬🇧 EN</button>
 
@@ -1109,6 +1117,7 @@
       'nav.strategy': 'Strategy',
       'nav.disputes': 'Rule Disputes',
       'nav.askAI': 'Ask AI',
+      'nav.play': '🎮 Play',
 
       'quick.h2': 'The game in 5 minutes',
       'quick.goal': 'Goal',
