@@ -2,6 +2,8 @@ import { cardId } from '../engine/cards';
 import { gameIsOver, playerById } from '../engine/state';
 import { Translate } from '../i18n/strings';
 import { CardView } from './CardView';
+import { CARD_WIDTH, handLayout } from './handLayout';
+import { useElementWidth } from './useElementWidth';
 import { describeEvents } from './eventText';
 import { GameController, HUMAN } from './useGame';
 
@@ -13,6 +15,7 @@ type Props = {
 };
 
 export function GameTable({ game, t, skipAnimations, onToggleSkip }: Props) {
+  const [handRef, handWidth] = useElementWidth();
   const { state, selection, selectedCards, canPlaySelection, myMoves, isMyTurn, reveal } = game;
   const me = playerById(state, HUMAN);
   const opponents = state.players.filter((p) => p.id !== HUMAN);
@@ -22,6 +25,9 @@ export function GameTable({ game, t, skipAnimations, onToggleSkip }: Props) {
   const canChansa = myMoves.some((m) => m.type === 'chansa');
   const canStåÖver = myMoves.some((m) => m.type === 'stå-över');
   const inDolda = me.hand.length === 0 && me.öppnaBordskort.length === 0 && me.doldaBordskort.length > 0;
+
+  // The fan tightens as the hand grows, so a big hand still fits on a phone.
+  const hand = handLayout(me.hand.length, handWidth || 336);
 
   const chansaHint = () => {
     if (state.dragstapeln.length === 0) return t('hint.noDragstapel');
@@ -126,12 +132,13 @@ export function GameTable({ game, t, skipAnimations, onToggleSkip }: Props) {
           })}
         </div>
 
-        <div className="my-hand">
-          {me.hand.map((card) => (
+        <div className={`my-hand ${hand.overflows ? 'my-hand-scroll' : ''}`} ref={handRef}>
+          {me.hand.map((card, index) => (
             <CardView
               key={cardId(card)}
               card={card}
               size="medium"
+              style={{ marginLeft: index === 0 ? 0 : hand.step - CARD_WIDTH }}
               selected={selection?.zone === 'hand' && selection.ids.includes(cardId(card))}
               onClick={isMyTurn ? () => game.toggleCard('hand', card) : undefined}
             />

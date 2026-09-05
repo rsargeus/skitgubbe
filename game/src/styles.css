@@ -238,8 +238,14 @@ h2 {
   min-height: 104px;
 }
 
-.my-hand .card { margin-left: -14px; }
-.my-hand .card:first-child { margin-left: 0; }
+/* Only when even the tightest fan is too wide: scroll rather than clip the ends. */
+.my-hand-scroll {
+  justify-content: flex-start;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.my-hand-scroll::-webkit-scrollbar { display: none; }
 
 .actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
 
