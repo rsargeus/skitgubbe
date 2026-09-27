@@ -38,9 +38,10 @@ Live at: [skitgubbe.nu](https://skitgubbe.nu) — and the game at [game.skitgubb
 skitgubbe/
 ├── index.html          # Rules page — markup, styles and scripts in one file
 ├── CONTEXT.md          # Domain glossary: the Swedish game terms, defined
+├── BACKLOG.md          # Backlog, sprints and the ground rules for working
 ├── docs/
 │   ├── adr/            # Architecture decision records
-│   └── agents/         # Issue tracker, triage labels and domain doc conventions
+│   └── agents/         # Backlog conventions, triage mapping and domain doc conventions
 ├── functions/
 │   └── ask.js          # Cloudflare Pages Function — handles AI Q&A requests
 ├── game/               # The playable game (own package, own Pages project)
