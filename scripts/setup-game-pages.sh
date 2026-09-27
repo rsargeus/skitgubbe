@@ -234,20 +234,20 @@ else
   warn "Fix the build before continuing: the custom domain will serve whatever"
   warn "the last successful deployment produced, which may be nothing at all."
   if ! confirm "Continue anyway?"; then
-    SKIPPED+=("custom domain spel.skitgubbe.nu (build was not green)")
+    SKIPPED+=("custom domain game.skitgubbe.nu (build was not green)")
     finish
     exit 0
   fi
 fi
 
 # ── Stage 3: custom domain ────────────────────────────────────────────────
-stage "Point spel.skitgubbe.nu at the project"
+stage "Point game.skitgubbe.nu at the project"
 say "skitgubbe.nu already uses Cloudflare nameservers, so adding the domain here"
 say "creates the DNS record for you. There is no separate DNS step."
 printf '\n'
 open_url "https://dash.cloudflare.com/?to=/:account/pages/view/${PAGES_PROJECT}/domains"
 step "Click 'Set up a custom domain'."
-step "Enter: spel.skitgubbe.nu"
+step "Enter: game.skitgubbe.nu"
 step "Confirm. Cloudflare adds the CNAME and issues a certificate."
 printf '\n'
 note "The certificate usually takes under a minute, occasionally a few."
@@ -257,12 +257,12 @@ pause "Press Enter once the domain shows as Active."
 stage "Verify both sites"
 say "Checking that the game is up and the rules page is untouched."
 printf '\n'
-game_status=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 https://spel.skitgubbe.nu || echo "000")
+game_status=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 https://game.skitgubbe.nu || echo "000")
 rules_status=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 https://skitgubbe.nu || echo "000")
 ask_status=$(curl -s -o /dev/null -w '%{http_code}' --max-time 45 -X POST https://skitgubbe.nu/ask \
   -H 'Content-Type: application/json' -d '{"question":"test"}' || echo "000")
 
-printf '  spel.skitgubbe.nu   %s\n' "$game_status"
+printf '  game.skitgubbe.nu   %s\n' "$game_status"
 printf '  skitgubbe.nu        %s\n' "$rules_status"
 printf '  skitgubbe.nu/ask    %s\n' "$ask_status"
 printf '\n'
@@ -270,9 +270,9 @@ printf '\n'
 if [[ "$game_status" == "200" ]]; then
   say "${GREEN}✓${RESET} The game is live."
 else
-  warn "spel.skitgubbe.nu returned $game_status. DNS may still be propagating;"
+  warn "game.skitgubbe.nu returned $game_status. DNS may still be propagating;"
   warn "wait a minute and re-run this stage."
-  SKIPPED+=("verify spel.skitgubbe.nu (returned $game_status)")
+  SKIPPED+=("verify game.skitgubbe.nu (returned $game_status)")
 fi
 
 if [[ "$rules_status" == "200" && "$ask_status" == "200" ]]; then

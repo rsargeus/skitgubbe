@@ -2,7 +2,7 @@
 
 An interactive rules reference for **Skitgubbe**, a classic Swedish card game. The site is designed as a learning experience for new players, not just a static reference document.
 
-Live at: [skitgubbe.nu](https://skitgubbe.nu) — and the game at [spel.skitgubbe.nu](https://spel.skitgubbe.nu)
+Live at: [skitgubbe.nu](https://skitgubbe.nu) — and the game at [game.skitgubbe.nu](https://game.skitgubbe.nu)
 
 ---
 
