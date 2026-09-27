@@ -1,15 +1,13 @@
-# Triage Labels
+# Triage labels
 
-The skills speak in terms of five canonical triage roles. This file maps those roles to the actual label strings used in this repo's issue tracker.
+The skills speak in terms of five canonical triage roles. With the backlog in `BACKLOG.md` (see `issue-tracker.md`), each role maps to a place or status in that file rather than to a label.
 
-| Label in mattpocock/skills | Label in our tracker | Meaning                                  |
-| -------------------------- | -------------------- | ---------------------------------------- |
-| `needs-triage`             | `needs-triage`       | Maintainer needs to evaluate this issue  |
-| `needs-info`               | `needs-info`         | Waiting on reporter for more information |
-| `ready-for-agent`          | `ready-for-agent`    | Fully specified, ready for an AFK agent  |
-| `ready-for-human`          | `ready-for-human`    | Requires human implementation            |
-| `wontfix`                  | `wontfix`            | Will not be actioned                     |
+| Label in mattpocock/skills | In `BACKLOG.md` | Meaning |
+| -------------------------- | --------------- | ------- |
+| `needs-triage` | A row in **Later** with no sprint | The techlead or product owner needs to evaluate it |
+| `needs-info` | An **Open question** `Q-n` that blocks the item | Waiting on the product owner for a decision |
+| `ready-for-agent` | `todo` in an approved sprint, with a role | Fully specified, ready for an agent |
+| `ready-for-human` | An **operator task** `O-n`, or a criterion marked for a human to check | Needs the operator or the product owner |
+| `wontfix` | Struck through, with the decision and date | Will not be actioned |
 
-When a skill mentions a role (e.g. "apply the AFK-ready triage label"), use the corresponding label string from this table.
-
-Edit the right-hand column to match whatever vocabulary you actually use.
+When a skill mentions a role (e.g. "apply the AFK-ready triage label"), set the corresponding status in `BACKLOG.md`.
